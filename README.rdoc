@@ -1,73 +1,23 @@
-== GAOC SEIS Scoring System
+== QOC 2019 Scoring System
 
-This application is the Georgia Orienteering Club's implementation of the Average Weighted Time (AWT) team scoring system used for the Southeast Interscholastic Championships.  The system is based on the interscholastic scoring rules published by Orienteering USA.  It is also based, in part, on a spreadsheet developed by the North Texas Orienteering Associatation that server the same perpose.  The system uses input files from Sports Software OE system. 
+This is a fork of the {GAOC Southeast Interscholastic Scoring System}[https://github.com/OldRugger/seis_2] used for the 2019 QOC Junior Nationals meet. 
 
-{Sample results file}[http://htmlpreview.github.io/?https://github.com/OldRugger/seis_2/blob/master/testdata/test_results.html]
+This is just a couple mods for QOC's specific meet.
 
-===Scoring Rules
-
-====AWT 
-(Class AWT) used within the Team score calculation for successful runners
-
-====CAT AWT 
-(Category AWT) used within the Team score calculation for DNF, MP, Disq runners
-
-====Scoring
-Scores for each race are computed as follows:
-1. For each interscholastic class, define AWT (the average winning time) as the average of the times of the top three competitors in that class who are competing in a team category.
-1. For each competitor in each class with a valid result, their score is computed as 60*(competitor’s time)/ (AWT for the class).
-1. For competitors with an OT, MP, DNF or DSQ result, their score will be the larger of 10+60*(course time limit)/ (AWT for the male class) and 10+60*(course time limit)/ (AWT for the female class) for that team category.
-====Team Scoring 
-1. The best three scores each day for each team are combined for a team score.
-1. Lowest overall team score wins.
-
-===Input Files
-====Initial Load File 
-* OE013
-====Team Definition 
-* CSV file with the following columns: Database ID,Team,Class,JROTC,Branch,School
-  * 'Database ID' is the OE Database ID. This field is used to tie everything together.  This field must be defined in OE. 
-  * Team name - team names should be unique
-  * Class - ISV, ISJV, ISI, ISP 
-  * JROTC - yes/no
-  * Branch - if JROTC
-  * School 
-The file should be sorted by 'Team', 'Class'
-====Results
-* OE0010 - two day results. 
-====Sample data
-Examples of all three files can be found in the testdata directory
 
 ===Install
-This system was developed on Windows 10 with Rails version 4.0.2 and Ruby version 2.1.8p440.  To keep it simple, the data store is Sqlite. The system should run fine in any Rails version 4 environment.  If you are trying to deploy to a Windows machine, I recommend {Rails Installer}[http://railsinstaller.org/en].  
-
 1.  Clone the repo
 1.  Install gems
- gem install bundler
+ gem install -v 1.3.0 bundler (optional: --user-install)
  bundle install
+ mkdir results
 1.  Set up the database
  bundle exec rake db:create
  bundle exec rake db:migrate
-    
-At this point you should be ready to go.  If you want to use the default rails webserver, you can simply run:
- bundle exec rails s 
-By default the server will be listening on port 3000.  You can change that with the -p option. 
 
 ===Processing
 ====Import Runners \ Teams
 * From the main page, select "Import Runners / Teams"
-* From the Runners page select the Import Runners file (OE0013), then select Import_Runners.  
-* Import teams, select the csv team definition file, then select Import_Teams.
+* From the Runners page select the Import Runners file (OE0013), then select Import_Runners.
 ====Processing results. 
 * Copy the results file (OE0010) in the the results directory (configurable).  The file will be auto detected and processed.  Caution, the file will be deleted at the end of processing. 
-
-===Output Pages
-====Runners 
-This page has a detail listing of all runners imported into they system
-====Teams 
-Current team results
-====Team2
-More detailed team results.  All styling is included in the file.  The page source can be copied without loss of formatting.  
-====AWT
-Detailed information on the Average Weighted Time calculation 
-
