@@ -3,6 +3,11 @@
 This is a fork of the {GAOC Southeast Interscholastic Scoring System}[https://github.com/OldRugger/seis_2] used for the 2019 QOC Junior Nationals meet. 
 
 This is just a couple mods for QOC's specific meet.
+* Import Team information from same file as Runners (OE2010 file exported from EventReg).
+  * Class = Runner class is used as team class.
+  * Text1 = School Name
+  * Text2 = Team Name
+  * Text3 = Team Type (more work needs to be done on this to break out the JROTC stuff)
 
 
 ===Install

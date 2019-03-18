@@ -48,7 +48,8 @@ class Team < ActiveRecord::Base
   end
 
   def self.create_team(row)
-    rowclass = row['Class']
+    # Class is stored as Short.
+    rowclass = row['Short']
     entryclass = nil
     case rowclass
     when 'ISPM', 'ISPF'
@@ -61,12 +62,13 @@ class Team < ActiveRecord::Base
       entryclass = 'ISV'
     end
     if entryclass == nil
+      puts "Bad class"
       return
     end
-    Team.create(name: row['Team'],
+    Team.create(name: row['Text2'],
                 entryclass: entryclass,
                 JROTC_branch: row['Branch'],
-                school: row['School']  )
+                school: row['Text1']  )
   end
 
   def self.assign_member(team, row)
