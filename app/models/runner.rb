@@ -1,17 +1,44 @@
 class Runner < ActiveRecord::Base
   def self.import(file)
     added = 0
+    teams = 0
     skipped = 0
     self.clear_existing_data
     CSV.foreach(file.path, headers: true) do |row|
-      if row["Short"].include? "IS"
-        Runner.create(database_id: row["Database Id"],
+      if row["OE0002"] == "***"
+        skipped += 1
+      elsif row["Short"].include? "IS"
+        runner = Runner.create(database_id: row["Database Id"],
                       surname: row["Surname"].gsub("'"){"\\'"},
                       firstname: row["First name"].gsub("'"){"\\'"},
                       school: row["City"].gsub("'"){"\\'"},
                       entryclass: row["Short"],
                       gender: row['S'])
         added += 1
+        
+        # Runner is created, now check their team information. Attempt
+        # to find team and then create it if necessary.
+        # Text1 = School Name
+        # Text2 = Team Name
+        # Text3 = Team Type
+        if row['Text2']
+          team = nil
+          
+          # Find Team
+          team = Team.find_by(name: row['Text2'])
+          if team == nil
+            team = Team.create_team(row)
+            if team == nil
+              puts "Something bad happened. Team wasn't created."
+              next
+            end
+            
+            teams += 1
+          end
+          
+          TeamMember.create(team_id: team.id,
+                            runner_id: runner.id)
+        end
       else
         skipped += 1
       end

@@ -48,7 +48,8 @@ class Team < ActiveRecord::Base
   end
 
   def self.create_team(row)
-    rowclass = row['Class']
+    # Class is stored as Short.
+    rowclass = row['Short']
     entryclass = nil
     case rowclass
     when 'ISPM', 'ISPF'
@@ -61,12 +62,32 @@ class Team < ActiveRecord::Base
       entryclass = 'ISV'
     end
     if entryclass == nil
+      puts "Bad class"
       return
     end
-    Team.create(name: row['Team'],
+    
+    # JROTC Branch is deduced from heuristics. A bit of a hack
+    # until I can figure out how to get the JROTC Branch into
+    # the OE2010 file.
+    jrotc_branch = nil
+    case row['Text1']
+    when 'Apollo H.S.', 'Bethel H.S.'
+      jrotc_branch = "Air Force"
+    when 'Calvert H.S.',
+      'Daviess County H.S.',
+      'Eldorado NJROTC',
+      'Gov Thomas Johnson HS',
+      'Henry County H.S.',
+      'Loudoun County H.S.',
+      'Patuxent H.S.',
+      'West Carteret HS'
+      jrotc_branch = "Navy"
+    end
+    
+    Team.create(name: row['Text2'],
                 entryclass: entryclass,
-                JROTC_branch: row['Branch'],
-                school: row['School']  )
+                JROTC_branch: jrotc_branch,
+                school: row['Text1']  )
   end
 
   def self.assign_member(team, row)
