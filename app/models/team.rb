@@ -70,18 +70,23 @@ class Team < ActiveRecord::Base
     # until I can figure out how to get the JROTC Branch into
     # the OE2010 file.
     jrotc_branch = nil
-    case row['Text1']
-    when 'Apollo H.S.', 'Bethel H.S.'
-      jrotc_branch = "Air Force"
-    when 'Calvert H.S.',
-      'Daviess County H.S.',
-      'Eldorado NJROTC',
-      'Gov Thomas Johnson HS',
-      'Henry County H.S.',
-      'Loudoun County H.S.',
-      'Patuxent H.S.',
-      'West Carteret HS'
-      jrotc_branch = "Navy"
+    if row['Text3'].include? "JROTC"
+      case row['Text1']
+      when 'Apollo H.S.', 'Bethel H.S.'
+        jrotc_branch = "Air Force"
+      when 'Calvert H.S.',
+        'Daviess County H.S.',
+        'Eldorado NJROTC',
+        'Gov Thomas Johnson HS',
+        'Henry County H.S.',
+        'Loudoun County H.S.',
+        'Patuxent H.S.',
+        'West Carteret HS'
+        jrotc_branch = "Navy"
+      else
+        puts "Unknown JROTC Branch"
+        jrotc_branch = "Unknown"
+      end
     end
     
     Team.create(name: row['Text2'],
