@@ -7,7 +7,7 @@ class Runner < ActiveRecord::Base
     CSV.foreach(file.path, headers: true) do |row|
       if row["OE0002"] == "***"
         skipped += 1
-      elsif row["Short"].include? "IS"
+      elsif row["Short"].include? "IS" or "IC"
         runner = Runner.create(database_id: row["Stno"],
                       surname: row["Surname"].gsub("'"){"\\'"},
                       firstname: row["First name"].gsub("'"){"\\'"},
