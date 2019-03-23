@@ -11,7 +11,7 @@ class Runner < ActiveRecord::Base
         runner = Runner.create(database_id: row["Stno"],
                       surname: row["Surname"].gsub("'"){"\\'"},
                       firstname: row["First name"].gsub("'"){"\\'"},
-                      school: row["City"].gsub("'"){"\\'"},
+                      school: row["Text1"].gsub("'"){"\\'"},
                       entryclass: row["Short"],
                       gender: row['S'])
         added += 1
