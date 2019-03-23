@@ -8,7 +8,7 @@ class Runner < ActiveRecord::Base
       if row["OE0002"] == "***"
         skipped += 1
       elsif row["Short"].include? "IS"
-        runner = Runner.create(database_id: row["Database Id"],
+        runner = Runner.create(database_id: row["Stno"],
                       surname: row["Surname"].gsub("'"){"\\'"},
                       firstname: row["First name"].gsub("'"){"\\'"},
                       school: row["City"].gsub("'"){"\\'"},
