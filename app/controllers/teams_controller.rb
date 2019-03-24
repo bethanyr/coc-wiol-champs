@@ -5,18 +5,20 @@ class TeamsController < ApplicationController
     awt = get_awt_hash
     @day1_hash = awt[:day1]
     @day2_hash = awt[:day2]
-
-    @isp = Team.where(entryclass: 'ISP').order(:sort_score, :day1_score, :name)
-    @isi = Team.where(entryclass: 'ISI').order(:sort_score, :day1_score, :name)
-    @isjv = Team.where(entryclass: 'ISJV').order(:sort_score, :day1_score, :name)
-    @isv = Team.where(entryclass: 'ISV').order(:sort_score, :day1_score, :name)
-    @jrotc = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
-
-    @classes = { 'isv'   => @isv,
-                 'isjv'  => @isjv,
-                 'isi'   => @isi,
-                 'isp'   => @isp,
-                 'jrotc' => @jrotc }
+    
+    @isv_school = Team.where(entryclass: 'ISV').where(category: "School").order(:sort_score, :day1_score, :name)
+    @isv_club = Team.where(entryclass: 'ISV').where(category: "Club").order(:sort_score, :day1_score, :name)
+    @isv_jrotc = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+    
+    @isjv_school = Team.where(entryclass: 'ISJV').order(:sort_score, :day1_score, :name)
+    @isjv_club = Team.where(entryclass: 'ISJV').where(category: "Club").order(:sort_score, :day1_score, :name)
+    @isjv_jrotc = Team.where(entryclass: 'ISJV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+    
+    @isi_school = Team.where(entryclass: 'ISI').order(:sort_score, :day1_score, :name)
+    @isi_club = Team.where(entryclass: 'ISI').order(:sort_score, :day1_score, :name)
+    
+    @ic_school = Team.where(entryclass: 'IC').order(:sort_score, :day1_score, :name)
+    @ic_club = Team.where(entryclass: 'IC').order(:sort_score, :day1_score, :name)
 
     @class_list = CLASS_LIST
 

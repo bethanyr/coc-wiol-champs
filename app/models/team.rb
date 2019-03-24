@@ -89,10 +89,23 @@ class Team < ActiveRecord::Base
       end
     end
     
+    # Categorize
+    category = nil
+    if row['Text3'].include? "Club"
+      category = "Club"
+    elsif row['Text3'].include? "School"
+      category = "School"
+    elsif row['Text3'].include? "College"
+      category = "College"
+    else
+      puts "Unknown Category"
+    end
+    
     Team.create(name: row['Text2'],
                 entryclass: entryclass,
                 JROTC_branch: jrotc_branch,
-                school: row['Text1']  )
+                school: row['Text1'],
+                category: category)
   end
 
   def self.assign_member(team, row)
