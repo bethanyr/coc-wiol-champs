@@ -8,10 +8,16 @@ class Runner < ActiveRecord::Base
       if row["OE0002"] == "***"
         skipped += 1
       elsif row["Short"].start_with? "I"
+        if row["Text1"]
+          school = row["Text1"]
+        else
+          school = "Unknown"
+        end
+        
         runner = Runner.create(database_id: row["Stno"],
                       surname: row["Surname"].gsub("'"){"\\'"},
                       firstname: row["First name"].gsub("'"){"\\'"},
-                      school: row["Text1"].gsub("'"){"\\'"},
+                      school: school.gsub("'"){"\\'"},
                       entryclass: row["Short"],
                       gender: row['S'])
         added += 1
