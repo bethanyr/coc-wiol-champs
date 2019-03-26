@@ -31,14 +31,12 @@ class Runner < ActiveRecord::Base
           team = nil
           
           # Find Team
-          team = Team.find_by(name: row['Text2'])
+          team, created = Team.find_or_create(row)
           if team == nil
-            team = Team.create_team(row)
-            if team == nil
-              puts "Something bad happened. Team wasn't created."
-              next
-            end
-            
+            puts "Something bad happened. Team wasn't created."
+          end
+          
+          if created
             teams += 1
           end
           

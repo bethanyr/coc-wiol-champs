@@ -47,7 +47,7 @@ class Team < ActiveRecord::Base
     day_score
   end
 
-  def self.create_team(row)
+  def self.find_or_create(row)
     # Class is stored as Short.
     rowclass = row['Short']
     entryclass = nil
@@ -93,8 +93,10 @@ class Team < ActiveRecord::Base
     
     # Categorize
     category = nil
+    school = row['Text1']
     if row['Text3'].include? "Club"
       category = "Club"
+      school = nil
     elsif row['Text3'].include? "School"
       category = "School"
     elsif row['Text3'].include? "College"
@@ -103,11 +105,16 @@ class Team < ActiveRecord::Base
       puts "Unknown Category"
     end
     
-    Team.create(name: row['Text2'],
-                entryclass: entryclass,
-                JROTC_branch: jrotc_branch,
-                school: row['Text1'],
-                category: category)
+    created = false
+    team = Team.find_or_create_by(name: row['Text2'],
+                                  entryclass: entryclass,
+                                  JROTC_branch: jrotc_branch,
+                                  school: school,
+                                  category: category) do |w|
+      created = true
+    end
+    
+    return team, created
   end
 
   def self.assign_member(team, row)
