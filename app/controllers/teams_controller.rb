@@ -10,14 +10,14 @@ class TeamsController < ApplicationController
     @isv_club = Team.where(entryclass: 'ISV').where(category: "Club").order(:sort_score, :day1_score, :name)
     @isv_jrotc = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
     
-    @isjv_school = Team.where(entryclass: 'ISJV').order(:sort_score, :day1_score, :name)
+    @isjv_school = Team.where(entryclass: 'ISJV').where(category: "School").order(:sort_score, :day1_score, :name)
     @isjv_club = Team.where(entryclass: 'ISJV').where(category: "Club").order(:sort_score, :day1_score, :name)
     @isjv_jrotc = Team.where(entryclass: 'ISJV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
     
-    @isi_school = Team.where(entryclass: 'ISI').order(:sort_score, :day1_score, :name)
+    @isi_school = Team.where(entryclass: 'ISI').where(category: "School").order(:sort_score, :day1_score, :name)
     @isi_club = Team.where(entryclass: 'ISI').where(category: "Club").order(:sort_score, :day1_score, :name)
     
-    @ic_school = Team.where(entryclass: 'IC').order(:sort_score, :day1_score, :name)
+    @ic_school = Team.where(entryclass: 'IC').where(category: "College").order(:sort_score, :day1_score, :name)
     @ic_club = Team.where(entryclass: 'IC').where(category: "Club").order(:sort_score, :day1_score, :name)
 
     @class_list = CLASS_LIST
