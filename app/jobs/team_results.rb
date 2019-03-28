@@ -133,6 +133,8 @@ class TeamResults
 
   def process_results_file(file)
     ActiveRecord::Base.transaction do
+      File.open(file, "r") { |f| Runner.import(f) }
+      
       CSV.foreach(file, :headers => true, :col_sep=> ',', :skip_blanks=>true, :row_sep=>:auto ) do |row|
         if ( (row['Stno'] != nil) &&
              (row['Stno'].length > 0) &&
