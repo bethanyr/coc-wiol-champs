@@ -124,7 +124,7 @@ class Team < ActiveRecord::Base
     if runner
       assign_runner_to_team(team, runner, row)
     else
-      raise "error: Runner with database_id #{row["Database ID"]} not found"
+      raise "error: Runner with database_id #{row["Stno"]} not found"
     end
 
   end

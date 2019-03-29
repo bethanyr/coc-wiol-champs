@@ -72,7 +72,7 @@ class Runner < ActiveRecord::Base
     else
       float_total = 0.0
     end
-    Runner.where(database_id: row['Database Id'].to_s)
+    Runner.where(database_id: row['Stno'].to_s)
       .update_all(time1: time1,
                   float_time1: float_time1,
                   classifier1: row["Classifier1"].to_s,
