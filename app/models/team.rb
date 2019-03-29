@@ -6,7 +6,7 @@ class Team < ActiveRecord::Base
     current_team = nil
     current_class = nil
     CSV.foreach(file.path, headers: true) do |row|
-      if (row['Team']) && (row['Class'].include? "IS")
+      if (row['Team']) && (row['Class'].include? "I")
         if (current_team == nil || current_team.name != row['Team']) ||
            current_class == nil || !(row['Class'].include? current_class)
           current_team = self.create_team(row)
