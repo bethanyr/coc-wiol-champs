@@ -61,7 +61,9 @@ class Team < ActiveRecord::Base
     when 'ISVM', 'ISVF'
       entryclass = 'ISV'
     when 'ICVM', 'ICVF'
-      entryclass = 'IC'
+      entryclass = 'ICV'
+    when 'ICJVM', 'ICJVF'
+      entryclass = 'ICJV'
     end
     if entryclass == nil
       puts "Bad class", row
