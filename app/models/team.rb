@@ -120,7 +120,7 @@ class Team < ActiveRecord::Base
   end
 
   def self.assign_member(team, row)
-    runner = Runner.where(database_id: row["Database ID"]).first
+    runner = Runner.where(database_id: row["Stno"]).first
     if runner
       assign_runner_to_team(team, runner, row)
     else
