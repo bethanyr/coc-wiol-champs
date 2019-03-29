@@ -16,6 +16,8 @@ class TeamResults
       calculate_awt_by_class("ISI")
       calculate_awt_by_class("ISJV")
       calculate_awt_by_class("ISV")
+      calculate_awt_by_class("ICJV")
+      calculate_awt_by_class("ICV")
       update_team_scores
     end
   end
@@ -138,7 +140,7 @@ class TeamResults
       CSV.foreach(file, :headers => true, :col_sep=> ',', :skip_blanks=>true, :row_sep=>:auto ) do |row|
         if ( (row['Stno'] != nil) &&
              (row['Stno'].length > 0) &&
-             (row['Short'].start_with?('IS')) )
+             (row['Short'].start_with?('I')) )
             Runner.import_results_row(row)
         end
       end
