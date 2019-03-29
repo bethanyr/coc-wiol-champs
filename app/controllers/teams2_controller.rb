@@ -9,6 +9,8 @@ class Teams2Controller < ApplicationController
     @isi = Team.where(entryclass: 'ISI').order(:sort_score, :day1_score, :name)
     @isjv = Team.where(entryclass: 'ISJV').order(:sort_score, :day1_score, :name)
     @isv = Team.where(entryclass: 'ISV').order(:sort_score, :day1_score, :name)
+    @icjv = Team.where(entryclass: 'ICJV').order(:sort_score, :day1_score, :name)
+    @icv = Team.where(entryclass: 'ICV').order(:sort_score, :day1_score, :name)
     if @ids === false
       @jrotc = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
     else
@@ -19,6 +21,8 @@ class Teams2Controller < ApplicationController
                  'isjv'  => @isjv,
                  'isi'   => @isi,
                  'isp'   => @isp,
+                 'icv'   => @icv,
+                 'icjv'  => @icjv,
                  'jrotc' => @jrotc }
 
     @runners = TeamMember.joins(:runner)
