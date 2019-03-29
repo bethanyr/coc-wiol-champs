@@ -164,7 +164,9 @@
         </tr>
       </table></td>
     <% end %>
-    <%if (@ispm.count > 0)%>
+   </tr>
+   <tr>
+   <%if (@ispm.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
         <tr style="background-color:LightGoldenRodYellow">
@@ -177,7 +179,9 @@
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
               <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                                  <%=result.school%></td>
+                                  <%=result.school%><br>
+              Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+              </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
               <%if iplace >3%>
@@ -214,7 +218,8 @@
         </tr>
       </table></td>
           <% end %>
-          
+         </tr>
+   <tr>  
 	      <%if (@icvm.count > 0)%>
 	        <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
 	                            margin: 0; padding: 0;">
