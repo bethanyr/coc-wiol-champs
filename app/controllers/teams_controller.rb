@@ -17,8 +17,8 @@ class TeamsController < ApplicationController
     @isi_school = Team.where(entryclass: 'ISI').where(category: "School").order(:sort_score, :day1_score, :name)
     @isi_club = Team.where(entryclass: 'ISI').where(category: "Club").order(:sort_score, :day1_score, :name)
     
-    @ic_school = Team.where(entryclass: 'IC').where(category: "College").order(:sort_score, :day1_score, :name)
-    @ic_club = Team.where(entryclass: 'IC').where(category: "Club").order(:sort_score, :day1_score, :name)
+    @icv_school = Team.where(entryclass: 'ICV').where(category: "College").order(:sort_score, :day1_score, :name)
+    @icv_club = Team.where(entryclass: 'ICV').where(category: "Club").order(:sort_score, :day1_score, :name)
 
     @class_list = CLASS_LIST
 
