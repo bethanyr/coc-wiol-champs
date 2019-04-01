@@ -24,6 +24,6 @@ class RunnersController < ApplicationController
     end
 
     def runner_params
-      params.require(:runner).permit(:database_id, :surname, :firstname, :gender, :school, :entryclass, :time1, :float_time1, :classifier1, :time2, :float_time2, :total_time, :float_total_time, :day1_score, :day2_score)
+      params.require(:runner).permit(:database_id, :surname, :firstname, :gender, :school, :entryclass, :time1, :float_time1, :classifier1, :time2, :float_time2, :total_time, :float_total_time, :day1_score, :day2_score, :jrotc)
     end
 end

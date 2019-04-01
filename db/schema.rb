@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190324025612) do
+ActiveRecord::Schema.define(version: 20190401193555) do
 
   create_table "day1_awts", force: true do |t|
     t.string   "entryclass"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20190324025612) do
     t.float    "day2_score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "jrotc"
   end
 
   create_table "team_members", force: true do |t|
