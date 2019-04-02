@@ -47,7 +47,7 @@
   <tr style="background-color:#002868">
     <th align="center" colspan="4"><font color="white">Team Results</font></th>
   </tr>
-  <tr style="background-color:LightGoldenRodYellow">
+  <tr style="background-color:LightBlue">
     <th align="center" width="25%">ISV</th>
     <th align="center" width="25%">ISJV</th>
     <th align="center" width="25%">IMI</th>
@@ -60,8 +60,7 @@
         <%= render 'team_list', :teams => @isv_school %>
         <tr><th colspan="2">Varsity Club</th></tr>
         <%= render 'team_list', :teams => @isv_club %>
-        <tr><th colspan="2">Varsity JROTC</th></tr>
-        <%= render 'team_list', :teams => @isv_jrotc %>
+        
       </table>
     </td>
     <td valign=top>
@@ -70,8 +69,7 @@
         <%= render 'team_list', :teams => @isjv_school %>
         <tr><th colspan="2">JV Club</th></tr>
         <%= render 'team_list', :teams => @isjv_club %>
-        <tr><th colspan="2">JV JROTC</th></tr>
-        <%= render 'team_list', :teams => @isjv_jrotc %>
+        
       </table>
     </td>
     <td valign=top>
@@ -80,6 +78,8 @@
         <%= render 'team_list', :teams => @isi_school %>
         <tr><th colspan="2">Intermediate Club</th></tr>
         <%= render 'team_list', :teams => @isi_club %>
+        <tr><th colspan="2">JV JROTC</th></tr>
+        <%= render 'team_list', :teams => @isjv_jrotc %>
       </table>
     </td>
     <td valign=top>
@@ -88,6 +88,8 @@
         <%= render 'team_list', :teams => @icv_school %>
         <tr><th colspan="2">College Club</th></tr>
         <%= render 'team_list', :teams => @icv_club %>
+        <tr><th colspan="2">Varsity JROTC</th></tr>
+        <%= render 'team_list', :teams => @isv_jrotc %>
       </table>
     </td>
   </tr>
