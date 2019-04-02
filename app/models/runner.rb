@@ -14,11 +14,17 @@ class Runner < ActiveRecord::Base
           school = "Unknown"
         end
         
+        jrotc = nil
+        if row['Text3'].include? "JROTC"
+        jrotc = "JROTC"
+        end
+        
         runner = Runner.create(database_id: row["Stno"],
                       surname: row["Surname"].gsub("'"){"\\'"},
                       firstname: row["First name"].gsub("'"){"\\'"},
                       school: school.gsub("'"){"\\'"},
                       entryclass: row["Short"],
+                      jrotc: jrotc,
                       gender: row['S'])
         added += 1
         
