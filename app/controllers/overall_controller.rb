@@ -17,3 +17,4 @@ class OverallController < ApplicationController
         @isjvf_jrotc = Runner.find_by_sql("SELECT firstname, surname, school, day1_score, day2_score, (day1_score + day2_score) as total  FROM runners where entryclass = 'ISJVF' and jrotc = 'JROTC' and day1_score > 0 and day2_score > 0 order by total;")
     @isjvm_jrotc = Runner.find_by_sql("SELECT firstname, surname, school, day1_score, day2_score, (day1_score + day2_score) as total  FROM runners where entryclass = 'ISJVM' and jrotc = 'JROTC' and day1_score > 0 and day2_score > 0 order by total;")
 end
+end
