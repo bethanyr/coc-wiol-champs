@@ -7,10 +7,10 @@
     <%if (@isvm.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
+        <tr style="background-color:LightGreen">
           <th colspan=6 align=center>Interscholastic Varsity Male</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
+        <tr style="background-color:LightGreen">
           <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
           <% @isvm.each do |result| %>
@@ -33,10 +33,10 @@
     <%if (@isvf.count > 0)%>
           <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                               margin: 0; padding: 0;">
-            <tr style="background-color:LightGoldenRodYellow">
+            <tr style="background-color:LightGreen">
               <th colspan=6 align=center>Interscholastic Varsity Female</th>
             <tr>
-            <tr style="background-color:LightGoldenRodYellow">
+            <tr style="background-color:LightGreen">
               <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
               <%iplace = 1 %>
               <% @isvf.each do |result| %>
@@ -61,18 +61,18 @@
     <%if (@isjvm.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
-          <th colspan=4 align=left>ISJV Male</th>
+        <tr style="background-color:LightGreen">
+          <th colspan=6 align=center>Interscholastic JV Male</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
-          <th></th><th>Runner</th><th>Score</th>
+        <tr style="background-color:LightGreen">
+          <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
           <% @isjvm.each do |result| %>
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
-              <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                <%=result.school%><br>
-                Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+              <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
               </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
@@ -87,18 +87,18 @@
     <%if (@isjvf.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
-          <th colspan=4 align=left>ISJV Female</th>
+        <tr style="background-color:LightGreen">
+          <th colspan=6 align=center>Interscholastic JV Female</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
-          <th></th><th>Runner</th><th>Score</th>
+        <tr style="background-color:LightGreen">
+          <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
           <% @isjvf.each do |result| %>
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
-              <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                <%=result.school%><br>
-                Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+              <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+	      	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
               </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
@@ -113,21 +113,21 @@
   </tr>
   <tr>
     <tr>
-    <%if (@isvm.count > 0)%>
+    <%if (@isvm_jrotc.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
-          <th colspan=4 align=left>ISV JROTC Male</th>
+        <tr style="background-color:LightGreen">
+          <th colspan=6 align=center>Interscholastic Varsity JROTC Male</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
-          <th></th><th>Runner</th><th>Score</th>
+        <tr style="background-color:LightGreen">
+          <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
-          <% @isvm.each do |result| %>
+          <% @isvm_jrotc.each do |result| %>
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
-              <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                <%=result.school%><br>
-                Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+              <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+	      	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
               </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
@@ -139,21 +139,21 @@
         </tr>
       </table></td>
     <% end %>
-    <%if (@isvf.count > 0)%>
+    <%if (@isvf_jrotc.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
-          <th colspan=4 align=left>ISV JROTC Female</th>
+        <tr style="background-color:LightGreen">
+          <th colspan=6 align=center>Interscholastic Varsity JROTC Female</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
-          <th></th><th>Runner</th><th>Score</th>
+        <tr style="background-color:LightGreen">
+          <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
-          <% @isvf.each do |result| %>
+          <% @isvf_jrotc.each do |result| %>
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
-              <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                <%=result.school%><br>
-                Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+              <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+	      	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
               </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
@@ -167,21 +167,21 @@
     <% end %>
   </tr>
   <tr>
-    <%if (@isjvm.count > 0)%>
+    <%if (@isjvm_jrotc.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
-          <th colspan=4 align=left>ISJV JROTC Male</th>
+        <tr style="background-color:LightGreen">
+          <th colspan=6 align=center>Interscholastic JV JROTC Male</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
-          <th></th><th>Runner</th><th>Score</th>
+        <tr style="background-color:LightGreen">
+          <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
-          <% @isjvm.each do |result| %>
+          <% @isjvm_jrotc.each do |result| %>
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
-              <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                <%=result.school%><br>
-                Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+             <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+	     	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
               </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
@@ -193,21 +193,21 @@
         </tr>
       </table></td>
     <% end %>
-    <%if (@isjvf.count > 0)%>
+    <%if (@isjvf_jrotc.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
-          <th colspan=4 align=left>ISJV JROTC Female</th>
+        <tr style="background-color:LightGreen">
+          <th colspan=6 align=center>Interscholastic JV JROTC Female</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
-          <th></th><th>Runner</th><th>Score</th>
+        <tr style="background-color:LightGreen">
+          <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
-          <% @isjvf.each do |result| %>
+          <% @isjvf_jrotc.each do |result| %>
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
-              <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                <%=result.school%><br>
-                Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+              <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+	      	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
               </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
@@ -224,18 +224,18 @@
   <%if (@isim.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
-          <th colspan=4 align=left>ISI Male</th>
+        <tr style="background-color:LightGreen">
+          <th colspan=6 align=center>Interscholastic Intermediate Male</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
-          <th></th><th>Runner</th><th>Score</th>
+        <tr style="background-color:LightGreen">
+          <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
           <% @isim.each do |result| %>
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
-              <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                <%=result.school%><br>
-                Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+              <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+	      	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
               </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
@@ -250,18 +250,18 @@
     <%if (@isif.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
-          <th colspan=4 align=left>ISI Female</th>
+        <tr style="background-color:LightGreen">
+          <th colspan=6 align=center>Interscholastic Intermediate Female</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
-          <th></th><th>Runner</th><th>Score</th>
+        <tr style="background-color:LightGreen">
+          <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
           <% @isif.each do |result| %>
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
-              <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                <%=result.school%><br>
-                Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+              <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+	      	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
               </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
@@ -278,18 +278,18 @@
    <%if (@ispm.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
-          <th colspan=4 align=left>ISP Male</th>
+        <tr style="background-color:LightGreen">
+          <th colspan=6 align=center>Interscholastic Primary Male</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
-          <th></th><th>Runner</th><th>Score</th>
+        <tr style="background-color:LightGreen">
+         <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
           <% @ispm.each do |result| %>
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
-              <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                                  <%=result.school%><br>
-              Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+              <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+	      	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
               </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
@@ -304,18 +304,18 @@
     <%if (@ispf.count > 0)%>
       <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
                           margin: 0; padding: 0;">
-        <tr style="background-color:LightGoldenRodYellow">
-          <th colspan=4 align=left>ISP Female</th>
+        <tr style="background-color:LightGreen">
+          <th colspan=6 align=center>Interscholastic Primary Female</th>
         <tr>
-        <tr style="background-color:LightGoldenRodYellow">
-          <th></th><th>Runner</th><th>Score</th>
+        <tr style="background-color:LightGreen">
+          <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
           <%iplace = 1 %>
           <% @ispf.each do |result| %>
             <tr>
               <td valign=top >&nbsp<%=iplace.to_s %></td>
-              <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-                <%=result.school%><br>
-                Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+              <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+	      	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
               </td>
               <td align=left><%=result.total.round(2).to_s%></td>
               <%iplace += 1%>
@@ -332,18 +332,18 @@
 	      <%if (@icvm.count > 0)%>
 	        <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
 	                            margin: 0; padding: 0;">
-	          <tr style="background-color:LightGoldenRodYellow">
-	            <th colspan=4 align=left>ICV Male</th>
+	          <tr style="background-color:LightGreen">
+	            <th colspan=6 align=center>Intercollegiate Varsity Male</th>
 	          <tr>
-	          <tr style="background-color:LightGoldenRodYellow">
-	            <th></th><th>Runner</th><th>Score</th>
+	          <tr style="background-color:LightGreen">
+	            <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
 	            <%iplace = 1 %>
-	            <% @isvm.each do |result| %>
+	            <% @icvm.each do |result| %>
 	              <tr>
 	                <td valign=top >&nbsp<%=iplace.to_s %></td>
-	                <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-	                  <%=result.school%><br>
-	                  Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+	                <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+				                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
 	                </td>
 	                <td align=left><%=result.total.round(2).to_s%></td>
 	                <%iplace += 1%>
@@ -359,18 +359,18 @@
 	     <%if (@icvf.count > 0)%>
 	        <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
 	                            margin: 0; padding: 0;">
-	          <tr style="background-color:LightGoldenRodYellow">
-	            <th colspan=4 align=left>ICV Female</th>
+	          <tr style="background-color:LightGreen">
+	            <th colspan=6 align=center>Intercollegiate Varsity Female</th>
 	          <tr>
-	          <tr style="background-color:LightGoldenRodYellow">
-	            <th></th><th>Runner</th><th>Score</th>
+	          <tr style="background-color:LightGreen">
+	            <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
 	            <%iplace = 1 %>
-	            <% @isvf.each do |result| %>
+	            <% @icvf.each do |result| %>
 	              <tr>
 	                <td valign=top >&nbsp<%=iplace.to_s %></td>
-	                <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-	                  <%=result.school%><br>
-	                  Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+	                <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+				                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
 	                </td>
 	                <td align=left><%=result.total.round(2).to_s%></td>
 	                <%iplace += 1%>
@@ -386,18 +386,18 @@
 	      <%if (@icjvm.count > 0)%>
 	      	        <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
 	      	                            margin: 0; padding: 0;">
-	      	          <tr style="background-color:LightGoldenRodYellow">
-	      	            <th colspan=4 align=left>ICJV Male</th>
+	      	          <tr style="background-color:LightGreen">
+	      	            <th colspan=6 align=center>Intercollegiate JV Male</th>
 	      	          <tr>
-	      	          <tr style="background-color:LightGoldenRodYellow">
-	      	            <th></th><th>Runner</th><th>Score</th>
+	      	          <tr style="background-color:LightGreen">
+	      	            <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
 	      	            <%iplace = 1 %>
-	      	            <% @isvm.each do |result| %>
+	      	            <% @icjvm.each do |result| %>
 	      	              <tr>
 	      	                <td valign=top >&nbsp<%=iplace.to_s %></td>
-	      	                <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-	      	                  <%=result.school%><br>
-	      	                  Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+	      	               <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+			       	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
 	      	                </td>
 	      	                <td align=left><%=result.total.round(2).to_s%></td>
 	      	                <%iplace += 1%>
@@ -413,18 +413,17 @@
 	      	     <%if (@icjvf.count > 0)%>
 	      	        <td valign=top><table width = 100% border=0 style="border-collapse: collapse; order-spacing: 0;
 	      	                            margin: 0; padding: 0;">
-	      	          <tr style="background-color:LightGoldenRodYellow">
-	      	            <th colspan=4 align=left>ICJV Female</th>
+	      	          <tr style="background-color:LightGreen">
+	      	            <th colspan=6 align=center>Intercollegiate JV Female</th>
 	      	          <tr>
-	      	          <tr style="background-color:LightGoldenRodYellow">
-	      	            <th></th><th>Runner</th><th>Score</th>
+	      	          <tr style="background-color:LightGreen">
+	      	            <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
 	      	            <%iplace = 1 %>
-	      	            <% @isvf.each do |result| %>
+	      	            <% @icjvf.each do |result| %>
 	      	              <tr>
-	      	                <td valign=top >&nbsp<%=iplace.to_s %></td>
-	      	                <td align=left><b><%=result.firstname%> <%=result.surname%></b><br>
-	      	                  <%=result.school%><br>
-	      	                  Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+	      	               <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+			       	                          <%=result.school%></td><td>
+                     <%=result.day1_score.round(3) %> </td><td><%=result.day2_score.round(3) %>
 	      	                </td>
 	      	                <td align=left><%=result.total.round(2).to_s%></td>
 	      	                <%iplace += 1%>
