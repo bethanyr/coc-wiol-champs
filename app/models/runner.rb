@@ -15,8 +15,8 @@ class Runner < ActiveRecord::Base
         end
         
         jrotc = nil
-        if row['Text3'].include? "JROTC"
-        jrotc = "JROTC"
+        if row['Text3']&.include? "JROTC"
+          jrotc = "JROTC"
         end
         
         runner = Runner.create(database_id: row["Stno"],
