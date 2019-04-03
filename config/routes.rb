@@ -13,6 +13,8 @@ Seis2::Application.routes.draw do
   get "teams2" => "teams2#index"
   
   get "overall" => "overall#index"
+  
+   get "overall2" => "overall2#index"
 
   get "awards" => "awards#index"
 
