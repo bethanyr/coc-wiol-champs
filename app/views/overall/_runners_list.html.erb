@@ -1,0 +1,18 @@
+<%iplace = 1 %>
+<% if (runner.count > 0) %>
+  <% runner.each do |result| %>
+    <tr>
+     <td valign=top >&nbsp<%=iplace.to_s %></td>
+                   <td align=left><%=result.firstname%> <%=result.surname%></td><td>
+                     <%=result.school%></td><td>
+                      <%=result.day1_score.round(2) %> </td><td><%=result.day2_score.round(2) %>
+                   </td>
+                   <td align=left><%=result.total.round(2).to_s%></td>
+                   <%iplace += 1%>
+                   
+                 </tr>
+             
+             <% end %>
+<% else %>
+  <tr><td colspan="2">No entries</td></tr>
+<% end %>
