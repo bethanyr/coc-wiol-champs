@@ -7,53 +7,98 @@
     <th align="center" colspan="4"><font color="white">Individual Results</font></th>
   </tr>
   <tr style="background-color:LightBlue">
-    <th align="center" width="25%"></th>
-    <th align="center" width="25%"></th>
-    <th align="center" width="25%"></th>
-     <th align="center" width="25%"></th>
-    
-  </tr>
+    <th align="center" width="33%"></th>
+    <th align="center" width="33%"></th>
+    <th align="center" width="33%"></th>
+   </tr>
+  
   <tr>
     <td valign=top>
-      <table>
-       <tr style="background-color:Tan">  
-     	<tr><th colspan="6" align=center>Interscholastic Varsity Female</th></tr>
-       <tr>
+          <table width=100% border=0 cellpadding=0 cellspacing=0 style="border-collapse: collapse; order-spacing: 0; margin: 0; padding: 0; ">
+        	<tr><th colspan="25" align=center style="background-color:Orange">Interscholastic Jr. Varsity Male</th></tr>
+           
+           <tr style="background-color:Orange">
+           <td colspan=0 class="cat">Pl</td>
+           <td colspan=1 class="cat">Runner</td>
+           <td colspan=1 class="cat">School</td>
+           <td colspan=1 class="cat">Day 1</td>
+           <td colspan=1 class="cat">Day 2</td>
+           <td colspan=1 class="cat">Score</td>
+       <%= render 'runners_list', :runner => @isjvm %>
+       
+       
+       
+    </td>
+    
+  </tr>
+</table>
+<td valign=top>
+      <table width=100% border=0 cellpadding=0 cellspacing=0 style="border-collapse: collapse; order-spacing: 0; margin: 0; padding: 0; ">
+    	<tr><th colspan="25" align=center style="background-color:Tan">Interscholastic Varsity Female</th></tr>
+       
        <tr style="background-color:Tan">
-       <td>Pl</td><td>Runner</td><td>School</td><td>Day 1</td><td>Day 2<td>Score</td>
+       <td colspan=0 class="cat">Pl</td>
+       <td colspan=1 class="cat">Runner</td>
+       <td colspan=1 class="cat">School</td>
+       <td colspan=1 class="cat">Day 1</td>
+       <td colspan=1 class="cat">Day 2</td>
+       <td colspan=1 class="cat">Score</td>
        <%= render 'runners_list', :runner => @isvf %>
-        <tr><th colspan="6">JV Female</th></tr>
+       
+        <tr><th colspan="25" align=center style="background-color:Orange">Interscholastic Jr. Varsity Female</th></tr>
+	       
+	       <tr style="background-color:Orange">
+	       <td colspan=0 class="cat">Pl</td>
+	       <td colspan=1 class="cat">Runner</td>
+	       <td colspan=1 class="cat">School</td>
+	       <td colspan=1 class="cat">Day 1</td>
+	       <td colspan=1 class="cat">Day 2</td>
+	       <td colspan=1 class="cat">Score</td>
        <%= render 'runners_list', :runner => @isjvf %>
-       <tr><th colspan="6">Intermediate Male</th></tr>
-       <%= render 'runners_list', :runner => @isim %>
+       
+      <tr><th colspan="25" align=center style="background-color:LightBlue">Interscholastic Primary Male</th></tr>
+      	       
+      	       <tr style="background-color:LightBlue">
+      	       <td colspan=0 class="cat">Pl</td>
+      	       <td colspan=1 class="cat">Runner</td>
+      	       <td colspan=1 class="cat">School</td>
+      	       <td colspan=1 class="cat">Day 1</td>
+      	       <td colspan=1 class="cat">Day 2</td>
+      	       <td colspan=1 class="cat">Score</td>
+       <%= render 'runners_list', :runner => @ispm %>
+       
+        <tr><th colspan="25" align=center style="background-color:Pink">Interscholastic Primary Female</th></tr>
+             	       
+             	       <tr style="background-color:Pink">
+             	       <td colspan=0 class="cat">Pl</td>
+             	       <td colspan=1 class="cat">Runner</td>
+             	       <td colspan=1 class="cat">School</td>
+             	       <td colspan=1 class="cat">Day 1</td>
+             	       <td colspan=1 class="cat">Day 2</td>
+             	       <td colspan=1 class="cat">Score</td>
+       <%= render 'runners_list', :runner => @ispf %>
        
        
       
       </table>
     </td>
-    <td valign=top>
-      <table>
-     <tr><th colspan="2">Varsity Male</th></tr>
-       <%= render 'runners_list', :runner => @isvm %>   
-      </table>
+  
+        <td valign=top>
+          <table width=100% border=0 cellpadding=0 cellspacing=0 style="border-collapse: collapse; order-spacing: 0; margin: 0; padding: 0; ">
+        	<tr><th colspan="25" align=center style="background-color:LightGreen">Interscholastic Varsity Male</th></tr>
+           
+           <tr style="background-color:LightGreen">
+           <td colspan=0 class="cat">Pl</td>
+           <td colspan=1 class="cat">Runner</td>
+           <td colspan=1 class="cat">School</td>
+           <td colspan=1 class="cat">Day 1</td>
+           <td colspan=1 class="cat">Day 2</td>
+           <td colspan=1 class="cat">Score</td>
+       <%= render 'runners_list', :runner => @isvm %>
+       
+       
+       
     </td>
-    <td valign=top>
-      <table>
-       <tr><th colspan="2">JV Female</th></tr>
-       <%= render 'runners_list', :runner => @isjvf %>
-        <tr><th colspan="2">Varsity College Female</th></tr>
-       <%= render 'runners_list', :runner => @icvf %>  
-        <tr><th colspan="2">Varsity College Male</th></tr>
-       <%= render 'runners_list', :runner => @icvm %>  
-      </table>
-    </td>
-    <td valign=top>
-          <table>
-         <tr><th colspan="2">JV Male</th></tr>
-           <%= render 'runners_list', :runner => @isjvm %>  
-            <tr><th colspan="2">Intermediate Female</th></tr>
-           <%= render 'runners_list', :runner => @isif %>  
-          </table>
-    </td>
+    
   </tr>
 </table>
