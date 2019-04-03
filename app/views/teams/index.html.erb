@@ -1,57 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<table class=teams_table >
-  <tr id=awt_bar>
-    <th class="awt" colspan=22>
-      <%= link_to "Average Weighted Time", controller: "awt" %>
-    </th>
-  </tr>
-  <tr class=header_row>
-    <td class=awt_cat colspan=11><b>Day 1</b></td>
-    <td class=awt_cat colspan=11><b>Day 2</b></td>
-  </tr>
-  <tr>
-    <% 2.times do %>
-      <td class=awt_cat><b>Class</b></td>
-      <% @class_list.each do |c| %>
-        <td class=awt_cat><%=c%></td>
-      <% end %>
-    <% end %>
-  </tr>
-  <tr>
-  <td class=awt_cat><b>AWT</b></td>
-  <% @class_list.each do |c| %>
-    <td class=awt_cat>
-      <% if @day1_hash[c] %>
-        <%=@day1_hash[c][:awt]%>
-      <% else %>
-        n/a
-      <% end %>
-    </td>
-  <% end %>
-  <td class=awt_cat><b>AWT</b></td>
-  <% @class_list.each do |c| %>
-    <td class=awt_cat>
-      <% if @day2_hash[c] %>
-        <%=@day2_hash[c][:awt]%>
-      <% else %>
-        n/a
-      <% end %>
-    </td>
-  <% end %>
-  </tr>
 
-</table>
 <table border = 1 width = 100% style="border-collapse: collapse; order-spacing: 0;
     margin: 0; padding: 0;">
   <tr style="background-color:#002868">
     <th align="center" colspan="4"><font color="white">Team Results</font></th>
   </tr>
   <tr style="background-color:LightBlue">
-    <th align="center" width="25%">ISV</th>
-    <th align="center" width="25%">ISJV</th>
-    <th align="center" width="25%">IMI</th>
-    <th align="center" width="25%">ICV</th>
+    <th align="center" width="33%"></th>
+    <th align="center" width="33%"></th>
+    <th align="center" width="33%"></th>
+    
   </tr>
   <tr>
     <td valign=top>
@@ -60,6 +19,8 @@
         <%= render 'team_list', :teams => @isv_school %>
         <tr><th colspan="2">Varsity Club</th></tr>
         <%= render 'team_list', :teams => @isv_club %>
+        <tr><th colspan="2">College Varsity</th></tr>
+        <%= render 'team_list', :teams => @icv_school %>
         
       </table>
     </td>
@@ -67,7 +28,9 @@
       <table>
         <tr><th colspan="2">JV School</th></tr>
         <%= render 'team_list', :teams => @isjv_school %>
-        <tr><th colspan="2">JV Club</th></tr>
+        <tr><th colspan="2">Varsity JROTC</th></tr>
+        <%= render 'team_list', :teams => @isv_jrotc %>
+         <tr><th colspan="2">JV Club</th></tr>
         <%= render 'team_list', :teams => @isjv_club %>
         
       </table>
@@ -82,15 +45,6 @@
         <%= render 'team_list', :teams => @isjv_jrotc %>
       </table>
     </td>
-    <td valign=top>
-      <table>
-        <tr><th colspan="2">College</th></tr>
-        <%= render 'team_list', :teams => @icv_school %>
-        <tr><th colspan="2">College Club</th></tr>
-        <%= render 'team_list', :teams => @icv_club %>
-        <tr><th colspan="2">Varsity JROTC</th></tr>
-        <%= render 'team_list', :teams => @isv_jrotc %>
-      </table>
-    </td>
+    
   </tr>
 </table>
