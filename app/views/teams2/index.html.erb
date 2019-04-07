@@ -1,127 +1,50 @@
 <style type="text/css">
   body {
     margin: 0;
-    padding: 0;
+    padding: 10px;
   }
-  .table {
+  
+  table.teams {
     width: 100%;
-    border-collapse: collapse;
-    order-spacing: 0;
-    margin: 0;
-    padding: 0;
   }
-  .table #awt_bar {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    background-color: #002868;
-  }
-  .table #team_bar {
-    background-color: #002868;
-  }
-  .table #awt_line {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-  }
-  .table #awt_bar .awt {
-    color: white;
-  }
-  .table #team_bar .awt {
-    color: white;
-  }
-  .table .awt_cat {
+  table.teams #teams {
     text-align: center;
+    color: white;
+    background-color: #002868;
   }
-  .table .awt_cat_b {
+  table.teams #class {
     text-align: center;
     font-weight: bold;
-  }
-  .table .header_row {
     background-color: LightGoldenRodYellow;
   }
-  .table .team_name {
-    color: red;
-    font-weight: bold;
+  table.teams #teamentry {
+    background-color: lightgrey;
   }
-  .table .detail {
+  table.teams #teamname {
+    font-weight: bold;
+    background-color: lightgrey;
+  }
+  table.teams #teamlineup td {
     font-size: 90%;
   }
 </style>
-<table class=table>
-  <tr id=team_bar>
-    <th class="awt" colspan=1>Team Results</th>
-  </tr>
-  <% @classes.each do  |c, teams| %>
-    <tr class=header_row>
-      <th align = center><%= c.upcase %></th>
-    </tr>
-  
-    <% if (teams.count > 0)%>
-      <% iplace = 1 %>
-      <tr>
-      <td valign="top">
-        <table>
-          <% teams.each do |team| %>
-            <tr>
-              <td valign=top><%=iplace.to_s %></td>
-              <% if team.total_score != nil && team.total_score < 9999 && team.total_score > 0.0%>
-                <%score = " (" + team.total_score.round(2).to_s + ")"%>
-              <% else %>
-                <%score = ""%>
-              <% end %>
-              <td>
-                <div class=team_name><%= team.name %> <%= score %> </div>
-                <b><i><%= team.school %></i></b>
-                <% if (team.day1_score && team.day1_score < 9999) %>
-                  - Day 1 (<%=team.day1_score.round(3) %>)
-                <% end %>
-                <% if (team.day2_score && team.day2_score < 9999) %>
-                  - Day 2 (<%=team.day2_score.round(3) %>)
-                <% end %>
-                <table width=95%>
-                  <% if @ids %>
-                    <tr><th>Start Number</th><th>Runner</th>
-                  <% else %>
-                    <tr><th>Runner</th><th>Day 1</th><th>Day 2</th></tr>
-                  <% end %>
-                  <% @runners.each do |r| %>
-                    <% if (r.team_id == team.id) %>
-                      <tr>
-                        <% if @ids %>
-                          <td class=detail align=center>
-                            <%= r.database_id %>
-                          <% end %>
-                        <td class=detail>
-                          <%= "#{r.firstname} #{r.surname}" %>
-
-                        <% if @ids === false %>
-                          </td>
-                          <td class=detail>
-                            <% if r.day1_score %>
-                              <% time = time_to_value(r.classifier1, r.time1, r.float_time1) %>
-                              <%= "#{time}(#{r.day1_score.round(3)})" %>
-                            <% end %>
-                          </td>
-                          <td class=detail>
-                            <% if r.day2_score %>
-                              <% time = time_to_value(r.classifier2, r.time2, r.float_time2) %>
-                              <%= "#{time}(#{r.day2_score.round(3)})" %>
-                            <% end %>
-                          </td>
-                        <% end %>
-                        </td>
-                      </tr>
-                    <% end %>
-                  <% end %>
-                </table>
-              </td>
-            </tr>
-            <% iplace += 1 %>
-          <% end %>
-         </table>
-      </td>
-      </tr>
+<table class="teams">
+<tr><td id="teams" colspan=5>Team Results</td></tr>
+<% @classes.each do  |c, teams| %>
+  <% if (teams.count > 0)%>
+    <tr id="class"><td colspan=5><%= c.upcase %></td></tr>
+    <!--<tr>
+      <td>P</td>
+      <td>Team</td>
+      <td>Runner</td>
+      <td>Day 1</td>
+      <td>Day 2</td>
+    </tr>-->
+    <% iplace = 1 %>
+    <% teams.each do |team| %>
+      <%= render 'team_detail', :team => team, :iplace => iplace %>
+      <% iplace += 1 %>
     <% end %>
   <% end %>
-
-
+<% end %>
 </table>

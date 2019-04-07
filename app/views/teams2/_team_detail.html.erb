@@ -1,0 +1,68 @@
+<!--
+<td>P</td>
+<td>Team</td>
+<td>Runner</td>
+<td>Day 1</td>
+<td>Day 2</td>
+-->
+
+<tr id="teamname">
+  <!-- Place -->
+  <td id="place"><%=iplace.to_s %></td>
+  
+  <!-- Team -->
+  <% if team.total_score != nil && team.total_score < 9999 && team.total_score > 0.0%>
+    <%score = " (" + team.total_score.round(2).to_s + ")"%>
+  <% else %>
+    <%score = ""%>
+  <% end %>
+  <td><%= team.name %> <%= score %></td>
+  
+  <!-- Runner -->
+  <td>Runner</td>
+
+  <!-- Day 1 -->
+  <td>Day 1
+    <% if (team.day1_score && team.day1_score < 9999) %>
+     (<%=team.day1_score.round(3) %>)
+    <% end %>
+  </td>
+
+  <!-- Day 2 -->
+  <td>Day 2
+    <% if (team.day2_score && team.day2_score < 9999) %>
+     (<%=team.day2_score.round(3) %>)
+    <% end %>
+  </td>
+</tr>
+
+<% @runners.each do |r| %>
+  <% if (r.team_id == team.id) %>
+    <tr id="teamlineup">
+      <td><td/>
+      <% if @ids %>
+        <td class=detail align=center>
+          <%= r.database_id %>
+        <% end %>
+      <td class=detail>
+        <%= "#{r.firstname} #{r.surname}" %>
+
+      <% if @ids === false %>
+        </td>
+        <td class=detail>
+          <% if r.day1_score %>
+            <% time = time_to_value(r.classifier1, r.time1, r.float_time1) %>
+            <%= "#{time}(#{r.day1_score.round(3)})" %>
+          <% end %>
+        </td>
+        <td class=detail>
+          <% if r.day2_score %>
+            <% time = time_to_value(r.classifier2, r.time2, r.float_time2) %>
+            <%= "#{time}(#{r.day2_score.round(3)})" %>
+          <% end %>
+        </td>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

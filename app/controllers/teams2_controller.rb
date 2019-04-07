@@ -7,27 +7,27 @@ class Teams2Controller < ApplicationController
 
     
    @isv_school = Team.where(entryclass: 'ISV').where(category: "School").order(:sort_score, :day1_score, :name)
-       @isv_club = Team.where(entryclass: 'ISV').where(category: "Club").order(:sort_score, :day1_score, :name)
-       @isv_jrotc = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
-       
-       @isjv_school = Team.where(entryclass: 'ISJV').where(category: "School").order(:sort_score, :day1_score, :name)
-       @isjv_club = Team.where(entryclass: 'ISJV').where(category: "Club").order(:sort_score, :day1_score, :name)
-       @isjv_jrotc = Team.where(entryclass: 'ISJV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
-       
-       @isi_school = Team.where(entryclass: 'ISI').where(category: "School").order(:sort_score, :day1_score, :name)
-       @isi_club = Team.where(entryclass: 'ISI').where(category: "Club").order(:sort_score, :day1_score, :name)
-       
-       @icv_school = Team.where(entryclass: 'ICV').where(category: "College").order(:sort_score, :day1_score, :name)
-       @icv_club = Team.where(entryclass: 'ICV').where(category: "Club").order(:sort_score, :day1_score, :name)
+   @isv_club = Team.where(entryclass: 'ISV').where(category: "Club").order(:sort_score, :day1_score, :name)
+   @isv_jrotc = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
    
-       @class_list = CLASS_LIST
+   @isjv_school = Team.where(entryclass: 'ISJV').where(category: "School").order(:sort_score, :day1_score, :name)
+   @isjv_club = Team.where(entryclass: 'ISJV').where(category: "Club").order(:sort_score, :day1_score, :name)
+   @isjv_jrotc = Team.where(entryclass: 'ISJV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+   
+   @isi_school = Team.where(entryclass: 'ISI').where(category: "School").order(:sort_score, :day1_score, :name)
+   @isi_club = Team.where(entryclass: 'ISI').where(category: "Club").order(:sort_score, :day1_score, :name)
+   
+   @icv_school = Team.where(entryclass: 'ICV').where(category: "College").order(:sort_score, :day1_score, :name)
+   @icv_club = Team.where(entryclass: 'ICV').where(category: "Club").order(:sort_score, :day1_score, :name)
+   
+   @class_list = CLASS_LIST
 
 
     @classes = { 'isv_school'   => @isv_school,
                  'isjv_school'  => @isjv_school,
                  'isi_school'   => @isi_school,
                  'isv_club'   => @isv_club,
-		 'isjv_club'  => @isjv_club,
+                 'isjv_club'  => @isjv_club,
                  'isi_club'   => @isi_club,
                  'icv_school'   => @icv_school,
                  'isv_jrotc' => @isv_jrotc,
