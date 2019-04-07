@@ -46,71 +46,19 @@
     font-size: 90%;
   }
 </style>
-<% if @ids === false %>
-  <table class=table>
-    <tr id=awt_bar>
-      <th class="awt" colspan=22 >
-        Average Weighted Time
-      </th>
-    </tr>
-    <tr class=header_row>
-      <td class=awt_cat colspan=11><b>Day 1</b></td>
-      <td class=awt_cat colspan=11><b>Day 2</b></td>
-    </tr>
-    <tr>
-      <% 2.times do %>
-        <td class=awt_cat_b>Class</td>
-        <% @class_list.each do |c| %>
-          <td class=awt_cat><%=c%></td>
-        <% end %>
-      <% end %>
-    </tr>
-    <% 3.times do |n| %>
-      <% runner = n + 1 %>
-      <tr>
-        <% 2.times do |d| %>
-          <td class=awt_cat_b><%= "Runner #{runner}" %> </td>
-          <% @class_list.each do |c| %>
-            <td>
-              <%= @awt[d+1]["#{c}#{runner}"] || "n/a*" %>
-            </td>
-          <% end %>
-        <% end %>
-      </tr>
-    <% end %>
-    <tr id=awt_line>
-      <% 2.times do |d| %>
-        <td class=awt_cat_b> AWT </td>
-        <% @class_list.each do |c| %>
-          <td>
-            <%= @awt[d+1][c] || "n/a*" %>
-          </td>
-        <% end %>
-        </td>
-      <% end %>
-    </tr>
-  </table>
-  <br>
-<% end %>
 <table class=table>
   <tr id=team_bar>
-    <% if @ids %>
-      <th class="awt" colspan=5>Team Members</th>
-    <% else %>
-      <th class="awt" colspan=10>Team Results</th>
-    <% end %>
-  </tr>
-  <tr class=header_row>
-  <% @classes.each do  |c, teams| %>
-      <%if (teams.count > 0)%>
-        <th align = center><%= c.upcase %></th>
-      <% end %>
-  <% end %>
+    <th class="awt" colspan=1>Team Results</th>
   </tr>
   <% @classes.each do  |c, teams| %>
+    <tr class=header_row>
+      <th align = center><%= c.upcase %></th>
+    </tr>
+  
     <% if (teams.count > 0)%>
       <% iplace = 1 %>
-      <td valign = top>
+      <tr>
+      <td valign="top">
         <table>
           <% teams.each do |team| %>
             <tr>
@@ -171,6 +119,7 @@
           <% end %>
          </table>
       </td>
+      </tr>
     <% end %>
   <% end %>
 
