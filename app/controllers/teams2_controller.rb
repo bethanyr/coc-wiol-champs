@@ -23,15 +23,15 @@ class Teams2Controller < ApplicationController
    @class_list = CLASS_LIST
 
 
-    @classes = { 'isv_school'   => @isv_school,
-                 'isjv_school'  => @isjv_school,
-                 'isi_school'   => @isi_school,
-                 'isv_club'   => @isv_club,
-                 'isjv_club'  => @isjv_club,
-                 'isi_club'   => @isi_club,
-                 'icv_school'   => @icv_school,
-                 'isv_jrotc' => @isv_jrotc,
-                 'isjv_jrotc' => @isjv_jrotc}
+    @classes = { 'ISV School'   => @isv_school,
+                 'ISJV School'  => @isjv_school,
+                 'ISI School'   => @isi_school,
+                 'ISV Club'   => @isv_club,
+                 'ISJV Club'  => @isjv_club,
+                 'ISI Club'   => @isi_club,
+                 'ICV School'   => @icv_school,
+                 'ISV JROTC' => @isv_jrotc,
+                 'ISJV JROTC' => @isjv_jrotc}
 
     @runners = TeamMember.joins(:runner)
       .select("team_members.team_id, runners.id as runner_id,

@@ -12,11 +12,20 @@
   
   <!-- Team -->
   <% if team.total_score != nil && team.total_score < 9999 && team.total_score > 0.0%>
-    <%score = " (" + team.total_score.round(2).to_s + ")"%>
+    <%score = team.total_score.round(2).to_s%>
   <% else %>
     <%score = ""%>
   <% end %>
-  <td><%= team.name %> <%= score %></td>
+  <td id="teamentry" rowspan="2">
+    <table width="100%">
+      <tr>
+        <td><%= team.school %></td>
+        <td style="text-align: right">Total: <%= score %></td>
+      <tr>
+        <td colspan="2"><%= team.name %></td>
+      </tr>
+    </table>
+  </td>
   
   <!-- Runner -->
   <td>Runner</td>
@@ -24,45 +33,47 @@
   <!-- Day 1 -->
   <td>Day 1
     <% if (team.day1_score && team.day1_score < 9999) %>
-     (<%=team.day1_score.round(3) %>)
+     &mdash; <%=team.day1_score.round(3) %>
     <% end %>
   </td>
 
   <!-- Day 2 -->
   <td>Day 2
     <% if (team.day2_score && team.day2_score < 9999) %>
-     (<%=team.day2_score.round(3) %>)
+     &mdash; <%=team.day2_score.round(3) %>
     <% end %>
   </td>
 </tr>
 
+<% rnum = 1 %>
 <% @runners.each do |r| %>
   <% if (r.team_id == team.id) %>
     <tr id="teamlineup">
-      <td><td/>
-      <% if @ids %>
-        <td class=detail align=center>
-          <%= r.database_id %>
-        <% end %>
+      <td></td>
+      
+      <% if rnum < 2 %>
+        <!-- rowspan -->
+      <% else %>
+        <td></td>
+      <% end %>
+      
       <td class=detail>
         <%= "#{r.firstname} #{r.surname}" %>
-
-      <% if @ids === false %>
-        </td>
-        <td class=detail>
-          <% if r.day1_score %>
-            <% time = time_to_value(r.classifier1, r.time1, r.float_time1) %>
-            <%= "#{time}(#{r.day1_score.round(3)})" %>
-          <% end %>
-        </td>
-        <td class=detail>
-          <% if r.day2_score %>
-            <% time = time_to_value(r.classifier2, r.time2, r.float_time2) %>
-            <%= "#{time}(#{r.day2_score.round(3)})" %>
-          <% end %>
-        </td>
-      <% end %>
+      </td>
+      
+      <td class=detail>
+        <% if r.day1_score %>
+          <% time = time_to_value(r.classifier1, r.time1, r.float_time1) %>
+          <%= "#{time}" %> &mdash; <%= "#{r.day1_score.round(3)}" %>
+        <% end %>
+      </td>
+      <td class=detail>
+        <% if r.day2_score %>
+          <% time = time_to_value(r.classifier2, r.time2, r.float_time2) %>
+          <%= "#{time}" %> &mdash; <%= "#{r.day2_score.round(3)}" %>
+        <% end %>
       </td>
     </tr>
+    <% rnum += 1 %>
   <% end %>
 <% end %>

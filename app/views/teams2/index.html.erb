@@ -6,6 +6,7 @@
   
   table.teams {
     width: 100%;
+    border-collapse: collapse;
   }
   table.teams #teams {
     text-align: center;
@@ -17,10 +18,17 @@
     font-weight: bold;
     background-color: LightGoldenRodYellow;
   }
+  table.teams #class td {
+    padding: 10px;
+    font-size: 2em;
+  }
   table.teams #teamentry {
+    vertical-align: top;
+    padding-right: 10px;
     background-color: lightgrey;
   }
   table.teams #teamname {
+    border-top: 1px solid black;
     font-weight: bold;
     background-color: lightgrey;
   }
@@ -32,7 +40,7 @@
 <tr><td id="teams" colspan=5>Team Results</td></tr>
 <% @classes.each do  |c, teams| %>
   <% if (teams.count > 0)%>
-    <tr id="class"><td colspan=5><%= c.upcase %></td></tr>
+    <tr id="class"><td colspan=5><%= c %></td></tr>
     <!--<tr>
       <td>P</td>
       <td>Team</td>
