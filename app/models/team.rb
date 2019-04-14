@@ -98,7 +98,6 @@ class Team < ActiveRecord::Base
     school = row['Text1']
     if row['Text3'].include? "Club"
       category = "Club"
-      jrotc_branch = nil
       school = nil
     elsif row['Text3'].include? "School"
       category = "School"
