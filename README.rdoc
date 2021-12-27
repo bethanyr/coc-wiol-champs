@@ -3,7 +3,7 @@
 This is a fork of the {GAOC Southeast Interscholastic Scoring System}[https://github.com/OldRugger/seis_2] used for the {2019 QOC Junior Nationals}[http://uschamps.qocweb.org] meet.
 
 This is just a couple mods for QOC's specific meet.
-* Use +Stno+ instead of +Database ID+.
+* Use +Stno+ instead of +Database_ID+.
 * Teams are created during Runner import (the OE2010 file exported from EventReg).
   * +Team.name+ = +Text2+ column.
   * +Team.entryclass+ = +Short+ column (class on short orienteering course)
@@ -16,16 +16,16 @@ This is just a couple mods for QOC's specific meet.
 * Layout has been adjusted for display of both Interscholasic and Intercollegiate classes.
 
 ===Install
-1.  Clone the repo
-1.  Install gems
- gem install -v 1.3.0 bundler (optional: --user-install)
- bundle install
- mkdir results
-1.  Set up the database
- bundle exec rake db:create
- bundle exec rake db:migrate
-1.  Run
- bundle exec rails s
+1. Clone the repo
+2. Install gems
+    gem install -v 1.3.0 bundler (optional: --user-install)
+    bundle install
+    mkdir results
+3. Set up the database
+    bundle exec rake db:create
+    bundle exec rake db:migrate
+4. Run
+    bundle exec rails s
 
 ===Processing
 ====Import Runners \ Teams
