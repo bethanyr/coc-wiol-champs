@@ -1,10 +1,28 @@
 development:
-  title:     '2019 QOC Junior Nationals'
+  title:     '2021-22 Winter League Championships'
   hotfolder: ./results
   max_time:  180
+  team_mapping:
+    W2F: 'Middle School'
+    W2M: 'Middle School'
+    W3F: 'JV Rookie'
+    W3M: 'JV Rookie'
+    W4F: 'JV Girls'
+    W5M: 'JV Boys'
+    W6F: 'Varsity Girls'
+    W6M: 'Varsity Boys'
 
 test:
-  title:     '2019 QOC Junior Nationals'
+  title:     '2021-22 Winter League Championships'
   hotfolder: ./results
   max_time:  180
+  team_mapping:
+    W2F: 'Middle School'
+    W2M: 'Middle School'
+    W3F: 'JV Rookie'
+    W3M: 'JV Rookie'
+    W4F: 'JV Girls'
+    W5M: 'JV Boys'
+    W6F: 'Varsity Girls'
+    W6M: 'Varsity Boys'
 

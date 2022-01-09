@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  CLASS_LIST =  ['ISVM', 'ISVF', 'ISJVM', 'ISJVF', 'ISIM', 'ISIF', 'ISPM', 'ISPF', 'ICVM', 'ICVF']
+  CLASS_LIST =  APP_CONFIG[:team_mapping].keys
 
   def float_time_to_hhmmss(float_time)
     return if float_time.class == String

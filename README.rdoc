@@ -2,6 +2,28 @@
 
 This is a fork of the {GAOC Southeast Interscholastic Scoring System}[https://github.com/OldRugger/seis_2] used for the {2019 QOC Junior Nationals}[http://uschamps.qocweb.org] meet.
 
+Here are the modifications for COC WIOL Championships use:
+
+Mapping of Course to Team:
+| Short Course | Long Name | Team |
+| W1F	| Elementary Female | none |
+| W1M	| Elementary Male | none |
+| W2F	| Middle School | Middle School |
+| W2M	| Middle School Male | Middle School |
+| W3F	| JV Rookie Female | JV Rookie |
+| W3M	| JV Rookie Male | JV Rookie |
+| W4F	| JV HS Female | JV Girls |
+| W5M	| JV HS Male | JV Boys |
+| W5MIC	| JV IC Male | none |
+| W6F	| Varsity HS Female | Varsity Girls |
+| W6M	| Varsity HS Male | Varsity Boys |
+| W8F	| Varsity IC Female | none |
+| W8M	| Varsity IC Male | none |
+
+Check for any competitor in the results, where the "Short" field starts with "W" and import those runners and results
+
+Team is setup in the app config Mapping
+
 This is just a couple mods for QOC's specific meet.
 * Use +Stno+ instead of +Database_ID+.
 * Teams are created during Runner import (the OE2010 file exported from EventReg).

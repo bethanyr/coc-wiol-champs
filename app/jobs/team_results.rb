@@ -4,6 +4,7 @@ class TeamResults
   include ApplicationHelper
 
   def perform(file)
+    p "Updating Team Results Start"
     @max_time = APP_CONFIG[:max_time]
     process_results_file(file[0])
     calculate_awt
@@ -12,12 +13,8 @@ class TeamResults
   def calculate_awt
     ActiveRecord::Base.transaction do
       delete_awt_results
-      calculate_awt_by_class("ISP")
-      calculate_awt_by_class("ISI")
-      calculate_awt_by_class("ISJV")
-      calculate_awt_by_class("ISV")
-      calculate_awt_by_class("ICJV")
-      calculate_awt_by_class("ICV")
+      classes = APP_CONFIG[:team_mapping]
+      classes.each { |c| calculate_awt_by_class(c[0]) }
       update_team_scores
     end
   end
@@ -134,13 +131,16 @@ class TeamResults
   end
 
   def process_results_file(file)
+    p "Starting to process results file"
     ActiveRecord::Base.transaction do
-      File.open(file, "r") { |f| Runner.import(f) }
+      p "results runner import"
       
+      File.open(file, "r") { |f| Runner.import(f) }
+      p "results file processing"
       CSV.foreach(file, :headers => true, :col_sep=> ',', :skip_blanks=>true, :row_sep=>:auto ) do |row|
         if ( (row['Stno'] != nil) &&
              (row['Stno'].length > 0) &&
-             (row['Short'].start_with?('I')) )
+             (row['Short'].start_with?('W')) )
             Runner.import_results_row(row)
         end
       end

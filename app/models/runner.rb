@@ -1,53 +1,54 @@
 class Runner < ActiveRecord::Base
   def self.import(file)
+    p "Importing runners"
     added = 0
     teams = 0
     skipped = 0
+    p "Clearing existing data"
     self.clear_existing_data
+    p "Starting runner import"
     CSV.foreach(file.path, headers: true) do |row|
       if row["OE0002"] == "***"
         skipped += 1
-      elsif row["Short"].start_with? "I"
-        if row["Text1"]
-          school = row["Text1"]
+      elsif row["Short"].start_with? "W"
+        if row["Region"]
+          school = row["Region"]
         else
           school = "Unknown"
         end
-        
-        jrotc = nil
-        if row['Text3']&.include? "JROTC"
-          jrotc = "JROTC"
-        end
+
+        entryclass = row["Short"]
         
         runner = Runner.create(database_id: row["Stno"],
                       surname: row["Surname"].gsub("'"){"\\'"},
                       firstname: row["First name"].gsub("'"){"\\'"},
                       school: school.gsub("'"){"\\'"},
-                      entryclass: row["Short"],
-                      jrotc: jrotc,
-                      gender: row['S'])
+                      entryclass: entryclass,
+                      gender: row['Gender'])
         added += 1
         
         # Runner is created, now check their team information. Attempt
         # to find team and then create it if necessary.
-        # Text1 = School Name
+        # Region = School Name
         # Text2 = Team Name
         # Text3 = Team Type
-        if row['Text2']
-          team = nil
-          
-          # Find Team
-          team, created = Team.find_or_create(row)
-          if team == nil
-            puts "Something bad happened. Team wasn't created."
+        team = nil
+        if entryclass
+          team_category = APP_CONFIG[:team_mapping][entryclass]     
+          if team_category
+            # Find Team
+            team, created = Team.find_or_create(row, team_category)
+            if team == nil
+              puts "Something bad happened. Team wasn't created."
+            end
+            
+            if created
+              teams += 1
+            end
+            
+            TeamMember.create(team_id: team.id,
+                              runner_id: runner.id)
           end
-          
-          if created
-            teams += 1
-          end
-          
-          TeamMember.create(team_id: team.id,
-                            runner_id: runner.id)
         end
       else
         skipped += 1
@@ -57,8 +58,8 @@ class Runner < ActiveRecord::Base
   end
 
   def self.import_results_row(row)
-    if (row["Time1"])
-      res = self.get_float_time(row["Time1"])
+    if (row["Time"])
+      res = self.get_float_time(row["Time"])
       float_time1 = res['float']
       time1 =  res['time']
     else
@@ -81,7 +82,7 @@ class Runner < ActiveRecord::Base
     Runner.where(database_id: row['Stno'].to_s)
       .update_all(time1: time1,
                   float_time1: float_time1,
-                  classifier1: row["Classifier1"].to_s,
+                  classifier1: row["Classifier"].to_s,
                   time2: time2,
                   float_time2: float_time2,
                   classifier2: row["Classifier2"].to_s,
