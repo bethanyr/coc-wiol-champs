@@ -7,6 +7,8 @@ class CreateRunners < ActiveRecord::Migration
       t.string :gender
       t.string :school
       t.string :entryclass
+      t.string :class_category
+      t.boolean :non_compete
       t.time :time1
       t.float :float_time1
       t.string :classifier1
@@ -17,6 +19,7 @@ class CreateRunners < ActiveRecord::Migration
       t.float :float_total_time
       t.float :day1_score
       t.float :day2_score
+      t.float :total_score
 
       t.timestamps
     end

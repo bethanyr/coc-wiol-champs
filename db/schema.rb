@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20190401193555) do
 
-  create_table "day1_awts", force: true do |t|
+  create_table "day1_awts", force: :cascade do |t|
     t.string   "entryclass"
     t.float    "runner1_float_time"
     t.time     "runner1_time"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20190401193555) do
     t.datetime "updated_at"
   end
 
-  create_table "day2_awts", force: true do |t|
+  create_table "day2_awts", force: :cascade do |t|
     t.string   "entryclass"
     t.float    "runner1_float_time"
     t.time     "runner1_time"
@@ -51,13 +51,14 @@ ActiveRecord::Schema.define(version: 20190401193555) do
     t.datetime "updated_at"
   end
 
-  create_table "runners", force: true do |t|
+  create_table "runners", force: :cascade do |t|
     t.integer  "database_id"
     t.string   "surname"
     t.string   "firstname"
     t.string   "gender"
     t.string   "school"
     t.string   "entryclass"
+    t.boolean  "non_compete"
     t.time     "time1"
     t.float    "float_time1"
     t.string   "classifier1"
@@ -68,12 +69,13 @@ ActiveRecord::Schema.define(version: 20190401193555) do
     t.float    "float_total_time"
     t.float    "day1_score"
     t.float    "day2_score"
+    t.float    "total_score"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "jrotc"
   end
 
-  create_table "team_members", force: true do |t|
+  create_table "team_members", force: :cascade do |t|
     t.integer  "team_id"
     t.integer  "runner_id"
     t.datetime "created_at"
@@ -83,7 +85,7 @@ ActiveRecord::Schema.define(version: 20190401193555) do
   add_index "team_members", ["runner_id"], name: "index_team_members_on_runner_id"
   add_index "team_members", ["team_id"], name: "index_team_members_on_team_id"
 
-  create_table "teams", force: true do |t|
+  create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.string   "entryclass"
     t.string   "JROTC_branch"
