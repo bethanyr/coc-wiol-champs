@@ -1,7 +1,8 @@
 module ApplicationHelper
 
-  CLASS_LIST =  APP_CONFIG[:team_mapping].keys
-
+  CLASS_LIST =  APP_CONFIG[:levels]
+  SCORE_CLASSES = APP_CONFIG[:score_classes]
+  
   def float_time_to_hhmmss(float_time)
     return if float_time.class == String
     if (float_time && float_time > 0)

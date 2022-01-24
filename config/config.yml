@@ -2,6 +2,166 @@ development:
   title:     '2021-22 Winter League Championships'
   hotfolder: ./results
   max_time:  180
+  score_classes:
+    '7':
+      male: '7M'
+      female: '7F'
+    '8':
+      male: '8M'
+      female: '8F'
+    'W1':
+      male: 'W1M'
+      female: 'W1F'
+    'W2':
+      male: 'W2M'
+      female: 'W2F'
+    'W3':
+      male: 'W3M'
+      female: 'W3F'
+    'W4':
+      male: 'W5M'
+      female: 'W4F'
+    'W6':
+      male: 'W6M'
+      female: 'W6F'
+    'W5IC':
+      male: 'W5MIC'
+      female: 'W5FIC'
+    'W8':
+      male: 'W8M'
+      female: 'W8F'  
+  levels:
+    '1':
+      o_class_description: 'Beginner'
+      class_level: 'Beginner'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:  
+    '3':
+      o_class_description: 'Adv Beginner'
+      class_level: 'Adv Beginner'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
+    '4':
+      o_class_description: 'Intermediate'
+      class_level: 'Intermediate'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
+    '7F':
+      o_class_description: 'Short Adv Female'
+      class_level: 'Short Adv'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'F'
+    '7M':
+      o_class_description: 'Short Adv Male'
+      class_level: 'Short Adv'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'M'
+    '7G':
+      o_class_description: 'Short Adv Group'
+      class_level: 'Short Adv'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
+    '8F':
+      o_class_description: 'Long Adv Female'
+      class_level: 'Long Adv'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'F'
+    '8M':
+      o_class_description: 'Long Adv Male'
+      class_level: 'Long Adv'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'M'
+    '8G':
+      o_class_description: 'Long Adv Group'
+      class_level: 'Long Adv'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
+    W1F:
+      o_class_description: 'Elementary Female'
+      class_level: 'Elementary School'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'F'
+    W1M:
+      o_class_description: 'Elementary Male'
+      class_level: 'Elementary School'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'M'
+    W2F:
+      o_class_description: 'Middle School Female'
+      class_level: 'Middle School'
+      team: 'Middle School'
+      wta_score: true
+      team_score: true
+      gender: 'F'
+    W2M:
+      o_class_description: 'Middle School Male'
+      class_level: 'Middle School'
+      team: 'Middle School'
+      wta_score: true
+      team_score: true
+      gender: 'M'
+    W3F:
+      o_class_description: 'JV Rookie Female'
+      class_level: 'JV Rookie'
+      team: 'JV Rookie'
+      team_score: true
+      wta_score: true
+      gender: 'F'
+    W3M:
+      o_class_description: 'JV Rookie Male'
+      class_level: 'JV Rookie'
+      team: 'JV Rookie'
+      team_score: true
+      wta_score: true
+      gender: 'M'
+    W4F:
+      o_class_description: 'JV Female'
+      class_level: 'JV'
+      team: 'JV Girls'
+      wta_score: true
+      gender: 'F'
+    W5M:
+      o_class_description: 'JV Male'
+      class_level: 'JV'
+      team: 'JV Boys'
+      wta_score: true
+      gender: 'M'
+    W6F:
+      o_class_description: 'Varsity Female'
+      level: 'Varsity'
+      team: 'Varsity Girls'
+      wta_score: true
+      team_score: true
+      gender: 'F'
+    W6M:
+      o_class_description: 'Varsity Male'
+      level: 'Varsity'
+      team: 'Varsity Boys'
+      team_score: true
+      wta_score: true
+      gender: 'M'
   team_mapping:
     W2F: 'Middle School'
     W2M: 'Middle School'
@@ -10,19 +170,169 @@ development:
     W4F: 'JV Girls'
     W5M: 'JV Boys'
     W6F: 'Varsity Girls'
-    W6M: 'Varsity Boys'
+    W6M: 'Varsity Boys' 
 
 test:
   title:     '2021-22 Winter League Championships'
   hotfolder: ./results
   max_time:  180
-  team_mapping:
-    W2F: 'Middle School'
-    W2M: 'Middle School'
-    W3F: 'JV Rookie'
-    W3M: 'JV Rookie'
-    W4F: 'JV Girls'
-    W5M: 'JV Boys'
-    W6F: 'Varsity Girls'
-    W6M: 'Varsity Boys'
-
+  score_classes:
+    '7':
+      male: '7M'
+      female: '7F'
+    '8':
+      male: '8M'
+      female: '8F'
+    'W1':
+      male: 'W1M'
+      female: 'W1F'
+    'W2':
+      male: 'W2M'
+      female: 'W2F'
+    'W3':
+      male: 'W3M'
+      female: 'W3F'
+    'W4':
+      male: 'W5M'
+      female: 'W4F'
+    'W6':
+      male: 'W6M'
+      female: 'W6F'
+    'W5IC':
+      male: 'W5MIC'
+      female: 'W5FIC'
+    'W8':
+      male: 'W8M'
+      female: 'W8F'
+  levels:
+    1:
+      o_class_description: 'Beginner'
+      class_level: 'Beginner'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:  
+    3:
+      o_class_description: 'Adv Beginner'
+      class_level: 'Adv Beginner'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
+    '4':
+      o_class_description: 'Intermediate'
+      class_level: 'Intermediate'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
+    '7F':
+      o_class_description: 'Short Adv Female'
+      class_level: 'Short Adv'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'F'
+    '7M':
+      o_class_description: 'Short Adv Male'
+      class_level: 'Short Adv'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'M'
+    '7G':
+      o_class_description: 'Short Adv Group'
+      class_level: 'Short Adv'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
+    '8F':
+      o_class_description: 'Long Adv Female'
+      class_level: 'Long Adv'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'F'
+    '8M':
+      o_class_description: 'Long Adv Male'
+      class_level: 'Long Adv'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'M'
+    '8G':
+      o_class_description: 'Long Adv Group'
+      class_level: 'Long Adv'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
+    W1F:
+      o_class_description: 'Elementary Female'
+      class_level: 'Elementary School'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'F'
+    W1M:
+      o_class_description: 'Elementary Male'
+      class_level: 'Elementary School'
+      team: 
+      wta_score: true
+      team_score: false
+      gender: 'M'
+    W2F:
+      o_class_description: 'Middle School Female'
+      class_level: 'Middle School'
+      team: 'Middle School'
+      wta_score: true
+      team_score: true
+      gender: 'F'
+    W2M:
+      o_class_description: 'Middle School Male'
+      class_level: 'Middle School'
+      team: 'Middle School'
+      wta_score: true
+      team_score: true
+      gender: 'M'
+    W3F:
+      o_class_description: 'JV Rookie Female'
+      class_level: 'JV Rookie'
+      team: 'JV Rookie'
+      team_score: true
+      wta_score: true
+      gender: 'F'
+    W3M:
+      o_class_description: 'JV Rookie Male'
+      class_level: 'JV Rookie'
+      team: 'JV Rookie'
+      team_score: true
+      wta_score: true
+      gender: 'M'
+    W4F:
+      o_class_description: 'JV Female'
+      class_level: 'JV'
+      team: 'JV Girls'
+      wta_score: true
+      gender: 'F'
+    W5M:
+      o_class_description: 'JV Male'
+      class_level: 'JV'
+      team: 'JV Boys'
+      wta_score: true
+      gender: 'M'
+    W6F:
+      o_class_description: 'Varsity Female'
+      level: 'Varsity'
+      team: 'Varsity Girls'
+      wta_score: true
+      team_score: true
+      gender: 'F'
+    W6M:
+      o_class_description: 'Varsity Male'
+      level: 'Varsity'
+      team: 'Varsity Boys'
+      team_score: true
+      wta_score: true
+      gender: 'M'
