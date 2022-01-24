@@ -1,4 +1,9 @@
 class Runner < ActiveRecord::Base
+  has_many :teams, through: :team_members
+  has_many :team_members
+
+  scope :competitive, -> { where(non_compete: false).where.not(classifier1: 1) }
+
   def self.import(file)
     p "Importing runners"
     added = 0
@@ -10,21 +15,21 @@ class Runner < ActiveRecord::Base
     CSV.foreach(file.path, headers: true) do |row|
       if row["OE0002"] == "***"
         skipped += 1
-      elsif row["Short"].start_with? "W"
+      elsif row["Short"].length > 0
         if row["Region"]
           school = row["Region"]
         else
-          school = "Unknown"
+          school = "N_A"
         end
 
         entryclass = row["Short"]
-        
         runner = Runner.create(database_id: row["Stno"],
                       surname: row["Surname"].gsub("'"){"\\'"},
                       firstname: row["First name"].gsub("'"){"\\'"},
                       school: school.gsub("'"){"\\'"},
                       entryclass: entryclass,
-                      gender: row['Gender'])
+                      non_compete: row["nc"].gsub("X"){"1"},
+                      gender: row["S"])
         added += 1
         
         # Runner is created, now check their team information. Attempt
@@ -50,8 +55,6 @@ class Runner < ActiveRecord::Base
                               runner_id: runner.id)
           end
         end
-      else
-        skipped += 1
       end
     end
     [added, skipped]

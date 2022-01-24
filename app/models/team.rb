@@ -1,4 +1,6 @@
 class Team < ActiveRecord::Base
+  has_many :team_members
+  has_many :runners, through: :team_members
 
   def self.import(file)
     teams = 0
@@ -32,19 +34,18 @@ class Team < ActiveRecord::Base
 
   private
 
-  def get_team_day_scores(day)
-    
+  def get_team_day_scores(day)    
     day_score = 0.0
-    # scores = TeamMember.joins(:runner)
-    #   .select("team_members.team_id,runners.id as runner_id,runners.day#{day}_score as day_score")
-    #   .where(team_id: self.id).where("runners.day#{day}_score > ?", 0.0)
-    #   .order("runners.day#{day}_score")
-    #   .limit(3)
-    # if scores.count === 3
-    #   scores.each do |score|
-    #     day_score += score.day_score if score.day_score
-    #   end
-    # end
+    scores = self.runners
+              .where("day#{day}_score > ?", 0.0)
+              .order("runners.day#{day}_score")
+              .limit(3)
+
+    if scores.size === 3
+      scores.each do |score|
+        day_score += score["day#{day}_score"] if score["day#{day}_score"]
+      end
+    end
     day_score
   end
 
