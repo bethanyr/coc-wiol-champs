@@ -1,11 +1,13 @@
-== QOC 2019 Scoring System
+# WIOL Champs Scoring System
 
-This is a fork of the {GAOC Southeast Interscholastic Scoring System}[https://github.com/OldRugger/seis_2] used for the {2019 QOC Junior Nationals}[http://uschamps.qocweb.org] meet.
+this is a fork from the 2019 QOC Junior Nationals scoring system which is a fork of the {GAOC Southeast Interscholastic Scoring System}[https://github.com/OldRugger/seis_2] used for the {2019 QOC Junior Nationals}[http://uschamps.qocweb.org] meet.
 
 Here are the modifications for COC WIOL Championships use:
 
 Mapping of Course to Team:
+
 | Short Course | Long Name | Team |
+| --- | --- | --- |
 | W1F	| Elementary Female | none |
 | W1M	| Elementary Male | none |
 | W2F	| Middle School | Middle School |
@@ -37,7 +39,7 @@ This is just a couple mods for QOC's specific meet.
   * The +Runner.import+ is re-ran on the results file. If OE is setup to periodically export results, the scorer can make team / runner changes in OE and not have to worry about reimporting on the computer that is displaying results.
 * Layout has been adjusted for display of both Interscholasic and Intercollegiate classes.
 
-===Install
+## Install
 1. Clone the repo
 2. Install gems
     gem install -v 1.3.0 bundler (optional: --user-install)
@@ -49,11 +51,11 @@ This is just a couple mods for QOC's specific meet.
 4. Run
     bundle exec rails s
 
-===Processing
-====Import Runners \ Teams
+## Processing
+### Import Runners \ Teams
 * From the main page, select "Import Runners / Teams"
 * From the Runners page select the Choose File, then select Import_Runners.
-====Processing results. 
+### Processing results. 
 * Copy the OE results file in the the results directory. 
   * The file will be auto detected and processed.
   * Runners / Teams will be clear / re-imported from the results file.
