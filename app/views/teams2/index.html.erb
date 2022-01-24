@@ -1,58 +1,40 @@
-<style type="text/css">
-  body {
-    margin: 0;
-    padding: 10px;
-  }
-  
-  table.teams {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  table.teams #teams {
-    text-align: center;
-    color: white;
-    background-color: #002868;
-  }
-  table.teams #class {
-    text-align: center;
-    font-weight: bold;
-    background-color: LightGoldenRodYellow;
-  }
-  table.teams #class td {
-    padding: 10px;
-    font-size: 2em;
-  }
-  table.teams #teamentry {
-    vertical-align: top;
-    padding-right: 10px;
-    background-color: lightgrey;
-  }
-  table.teams #teamname {
-    border-top: 1px solid black;
-    font-weight: bold;
-    background-color: lightgrey;
-  }
-  table.teams #teamlineup td {
-    font-size: 90%;
-  }
-</style>
-<table class="teams">
-<tr><td id="teams" colspan=5>Team Results</td></tr>
-<% @classes.each do  |c, teams| %>
-  <% if (teams.count > 0)%>
-    <tr id="class"><td colspan=5><%= c %></td></tr>
-    <!--<tr>
-      <td>P</td>
-      <td>Team</td>
-      <td>Runner</td>
-      <td>Day 1</td>
-      <td>Day 2</td>
-    </tr>-->
-    <% iplace = 1 %>
-    <% teams.each do |team| %>
-      <%= render 'team_detail', :team => team, :iplace => iplace %>
-      <% iplace += 1 %>
+
+
+<% @team_classes.each do |team_class| %>
+  <h2><%= team_class %></h2>
+  <table>
+  <thead>
+    <tr>
+      <th>Team Name</th>
+      <th>Runner</th>
+      <th>Day 1 Score</th>
+      <th>Day 2 Score</th>
+      <th>Total Score</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @team_results.where(entryclass: team_class).each do |team| %>
+    <% if team.runners.competitive.size > 0 %>
+      <tr>
+
+        <td><%= team.name %></td>
+        <td></td>
+        <td><%= team.day1_score.round(2) %></td>
+        <td><%= team.day2_score.round(2) %></td>
+        <td><%= team.total_score.round(2) %></td>
+      </tr>
+      <% team.runners.competitive.order(:day1_score, :day2_score).each do |runner| %>
+        <tr>
+          <td></td>
+          <td><%= "#{runner.firstname} #{runner.surname}" %></td>
+          <td><%= runner.day1_score.round(2) %></td>
+          <td><% if runner.day2_score %><%= runner.day2_score.round(2) %><%end %></td>
+          <td><% if runner.total_score %><%= runner.total_score.round(2) %><% end %></td>
+        </tr>
+      <% end %>
     <% end %>
   <% end %>
+  </tbody>
+  </table>
 <% end %>
-</table>
