@@ -4,6 +4,7 @@ class TeamResults
   include ApplicationHelper
 
   def perform(file)
+    p "Updating Team Results Start"
     @max_time = APP_CONFIG[:max_time]
     process_results_file(file[0])
     calculate_awt
@@ -12,12 +13,8 @@ class TeamResults
   def calculate_awt
     ActiveRecord::Base.transaction do
       delete_awt_results
-      calculate_awt_by_class("ISP")
-      calculate_awt_by_class("ISI")
-      calculate_awt_by_class("ISJV")
-      calculate_awt_by_class("ISV")
-      calculate_awt_by_class("ICJV")
-      calculate_awt_by_class("ICV")
+      classes = SCORE_CLASSES
+      classes.each { |c| calculate_awt_by_class(c[1]) }
       update_team_scores
     end
   end
@@ -32,22 +29,22 @@ class TeamResults
   end
 
   def calculate_awt_by_class(team_class)
-    male_entryclass = team_class + "M"
-    female_entryclass = team_class + "F"
+    male_entryclass = team_class["male"]
+    female_entryclass = team_class["female"]
     #day 1
-    day1_awt_m = calculate_awt_by_class_gender(team_class, "M", 1)
-    day1_awt_f = calculate_awt_by_class_gender(team_class, "F", 1)
+    day1_awt_m = calculate_awt_by_class_gender(male_entryclass, 1)
+    day1_awt_f = calculate_awt_by_class_gender(female_entryclass, 1)
     day1_cat = get_category_time(day1_awt_m, day1_awt_f)
     update_day_awt(day1_awt_m, male_entryclass, 1, day1_cat) if day1_awt_m
     update_day_awt(day1_awt_f, female_entryclass, 1, day1_cat) if day1_awt_f
     #day 2
-    day2_awt_m = calculate_awt_by_class_gender(team_class, "M", 2)
-    day2_awt_f = calculate_awt_by_class_gender(team_class, "F", 2)
+    day2_awt_m = calculate_awt_by_class_gender(male_entryclass, 2)
+    day2_awt_f = calculate_awt_by_class_gender(female_entryclass, 2)
     day2_cat = get_category_time(day2_awt_m, day2_awt_f)
     update_day_awt(day2_awt_m, male_entryclass, 2, day2_cat) if day2_awt_m
     update_day_awt(day2_awt_f, female_entryclass, 2, day2_cat) if day2_awt_f
-    update_day_scores(day1_awt_m, day2_awt_m, day1_cat, day2_cat, team_class, "M")
-    update_day_scores(day1_awt_f, day2_awt_f, day1_cat, day2_cat, team_class, "F")
+    update_day_scores(day1_awt_m, day2_awt_m, day1_cat, day2_cat, male_entryclass)
+    update_day_scores(day1_awt_f, day2_awt_f, day1_cat, day2_cat, female_entryclass)
   end
 
   def delete_awt_results
@@ -84,22 +81,30 @@ class TeamResults
     end
   end
 
-  def update_day_scores(awt1, awt2, day1_cat, day2_cat, team_class, gender)
-    runners = Runner.where(entryclass: team_class+gender)
+  def update_day_scores(awt1, awt2, day1_cat, day2_cat, entryclass)
+    runners = Runner.where(entryclass: entryclass)
     runners.each do |runner|
       day1_classifier = runner.classifier1
       day2_classifier = runner.classifier2
 
       if day1_classifier
-        if  day1_classifier != "0"
-          runner.day1_score = 10 + (60 * (@max_time/day1_cat))
+        if runner.non_compete1
+          runner.day1_score = 0.0
+        elsif   ["2", "3", "4", "5"].include? day1_classifier
+          if day1_cat > 0
+            runner.day1_score = 10 + (60 * (@max_time/day1_cat))
+          end
         elsif (day1_classifier === "0" && runner.float_time1 > 0 && awt1)
           runner.day1_score = 60 * (runner.float_time1/awt1[:awt])
         end
       end
       if day2_classifier
-        if day2_classifier != "0"
-          runner.day2_score = 10 + (60 * (@max_time/day2_cat))
+        if runner.non_compete2
+          runner.day2_score = 0.0
+        elsif ["2", "3", "4", "5"].include? day2_classifier
+          if day2_cat > 0
+            runner.day2_score = 10 + (60 * (@max_time/day2_cat))
+          end
         elsif (day2_classifier === "0" && runner.float_time2 > 0 && awt2)
           runner.day2_score = 60 * (runner.float_time2/awt2[:awt])
         end
@@ -111,6 +116,9 @@ class TeamResults
   end
 
   def get_category_time(m_awt, f_awt)
+    # for the calculation of DSQ, MSP OVT scores
+    # will return the lowest time between male and female 
+    # which will give the largest score when used in AWT calculation
     male = 0
     female = 0
     male = m_awt[:awt] if m_awt
@@ -118,10 +126,10 @@ class TeamResults
     cat_time = male < female  ? male : female
   end
 
-  def calculate_awt_by_class_gender(team_class, gender, day)
+  def calculate_awt_by_class_gender(team_class, day)
     times = []
-    awt_runners = Runner.where(entryclass: team_class+gender)
-                    .where("classifier#{day} = 0 and float_time#{day} > 0" )
+    awt_runners = Runner.where(entryclass: team_class)
+                    .where("classifier#{day} = 0 and float_time#{day} > 0 and non_compete#{day} is false")
                       .order("float_time#{day}").limit(3)
     return nil if awt_runners.count == 0
     awt_runners.each { |r| times.push(r.send("float_time#{day}")) }
@@ -134,13 +142,15 @@ class TeamResults
   end
 
   def process_results_file(file)
+    p "Starting to process results file"
     ActiveRecord::Base.transaction do
-      File.open(file, "r") { |f| Runner.import(f) }
+      p "results runner import"
       
+      File.open(file, "r") { |f| Runner.import(f) }
+      p "results file processing"
       CSV.foreach(file, :headers => true, :col_sep=> ',', :skip_blanks=>true, :row_sep=>:auto ) do |row|
         if ( (row['Stno'] != nil) &&
-             (row['Stno'].length > 0) &&
-             (row['Short'].start_with?('I')) )
+             (row['Stno'].length > 0) )
             Runner.import_results_row(row)
         end
       end

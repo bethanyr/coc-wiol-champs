@@ -1,6 +1,30 @@
-== QOC 2019 Scoring System
+# WIOL Champs Scoring System
 
-This is a fork of the {GAOC Southeast Interscholastic Scoring System}[https://github.com/OldRugger/seis_2] used for the {2019 QOC Junior Nationals}[http://uschamps.qocweb.org] meet.
+this is a fork from the 2019 QOC Junior Nationals scoring system which is a fork of the {GAOC Southeast Interscholastic Scoring System}[https://github.com/OldRugger/seis_2] used for the {2019 QOC Junior Nationals}[http://uschamps.qocweb.org] meet.
+
+Here are the modifications for COC WIOL Championships use:
+
+Mapping of Course to Team:
+
+| Short Course | Long Name | Team |
+| --- | --- | --- |
+| W1F	| Elementary Female | none |
+| W1M	| Elementary Male | none |
+| W2F	| Middle School | Middle School |
+| W2M	| Middle School Male | Middle School |
+| W3F	| JV Rookie Female | JV Rookie |
+| W3M	| JV Rookie Male | JV Rookie |
+| W4F	| JV HS Female | JV Girls |
+| W5M	| JV HS Male | JV Boys |
+| W5MIC	| JV IC Male | none |
+| W6F	| Varsity HS Female | Varsity Girls |
+| W6M	| Varsity HS Male | Varsity Boys |
+| W8F	| Varsity IC Female | none |
+| W8M	| Varsity IC Male | none |
+
+Check for any competitor in the results, where the "Short" field starts with "W" and import those runners and results
+
+Team is setup in the app config Mapping
 
 This is just a couple mods for QOC's specific meet.
 * Use +Stno+ instead of +Database_ID+.
@@ -15,7 +39,7 @@ This is just a couple mods for QOC's specific meet.
   * The +Runner.import+ is re-ran on the results file. If OE is setup to periodically export results, the scorer can make team / runner changes in OE and not have to worry about reimporting on the computer that is displaying results.
 * Layout has been adjusted for display of both Interscholasic and Intercollegiate classes.
 
-===Install
+## Install
 1. Clone the repo
 2. Install gems
     gem install -v 1.3.0 bundler (optional: --user-install)
@@ -27,11 +51,11 @@ This is just a couple mods for QOC's specific meet.
 4. Run
     bundle exec rails s
 
-===Processing
-====Import Runners \ Teams
+## Processing
+### Import Runners \ Teams
 * From the main page, select "Import Runners / Teams"
 * From the Runners page select the Choose File, then select Import_Runners.
-====Processing results. 
+### Processing results. 
 * Copy the OE results file in the the results directory. 
   * The file will be auto detected and processed.
   * Runners / Teams will be clear / re-imported from the results file.

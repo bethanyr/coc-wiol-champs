@@ -1,0 +1,56 @@
+<h1><%= notice %></h1>
+
+<h2>Team Standings Day 1</h2>
+<p>Each team's 3 lowest individual member scores per day are combined for the team total. Teams with less than 3 team members in that class will not have a team total.</p>
+
+<% @team_classes.each do |team_class| %>
+  <div class="lg-mrg-bottom">
+    <%iplace = 1 %>
+    <h2><%= team_class %></h2>
+    <table class="table" width="100%">
+      <thead>
+        <tr id="column-titles">
+          <th>Place</th>
+          <th>Team Name</th>
+          <th>Runner</th>
+          <th class="text-right">Day 1 Time</th>
+          <th class="text-right">Day 1 Score</th>
+          <th class="text-right"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @team_results.where(entryclass: team_class).each do |team| %>
+          <% if team.runners.day1_competitive.size > 0 %>
+            <tr class="table-active">
+              <td><% if team.runners.day1_competitive.size >= 3 %><%= iplace %><% end %></td>
+              <td class="font-weight-bold"><%= team.name %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="text-right font-weight-bold"><% if team.runners.day1_competitive.size >= 3 && team.day1_score < 9999 %><%= "Team Total: #{team.day1_score.round(2)}" %><%end%></td>
+            </tr>
+            <% team.runners.day1_competitive.order(:day1_score).each do |runner| %>
+              <tr>
+                <td></td>
+                <td></td>
+                <td><%= "#{runner.firstname} #{runner.surname}" %></td>
+                <td class="text-right"><% if runner.time1 != nil %><%= time_to_value(runner.classifier1, runner.time1, runner.float_time1) %><% end %></td>
+                <td class="text-right"><%= runner.day1_score.round(2) %></td>
+                <td></td>
+              </tr>
+            <% end %>
+            <%iplace += 1%>
+          <% end %>
+        <% end %>
+      </tbody>
+  </table>
+  </div>
+<% end %>
+
+<br>
+<br>
+<br><b>Class AWT</b> used within the Team score calculation for successful runners
+<br><b>Category</b> AWT used within the Team score calculation for DNF, MP, Disq runners
+<br>
+<h3>US Orienteering Scoring rules
+<h4>A.35.4 <em>Scoring</em></h4><p>A.35.4.1 Scores for each race are computed as follows:</p><ol type="a"><li>For each Individual Intercollegiate class, define AWT (the average winning time) as the average of the times of the top three individual competitors in that class (for Championships use only times from Team Championship-eligible competitors). In the event that there are fewer than three eligible competitors with a valid time in any intercollegiate class, the AWT shall be calculated as the average of the times of all eligible competitors with a valid time.</li><li>For each competitor in each Individual Intercollegiate class with a valid result, their score is computed as 60*(competitor’s time)/ (AWT for the class).</li><li>For competitors with an OVT, MSP, DNF or DSQ result, their score shall be the larger of 10+[60*(course time limit)/ (AWT for the male class)] and 10+[60*(course time limit)/ (AWT for the female class)] for their team level (Varsity or JV).</li></ol><p>A.35.4.2 <em>Team Scoring</em>: The best three scores from each race for each team are combined for a team score. Lowest overall team score wins.</p>
