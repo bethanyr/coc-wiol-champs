@@ -88,7 +88,9 @@ class TeamResults
       day2_classifier = runner.classifier2
 
       if day1_classifier
-        if  day1_classifier != "0"
+        if runner.non_compete1
+          runner.day1_score = 0.0
+        elsif   ["2", "3", "4", "5"].include? day1_classifier
           if day1_cat > 0
             runner.day1_score = 10 + (60 * (@max_time/day1_cat))
           end
@@ -97,7 +99,9 @@ class TeamResults
         end
       end
       if day2_classifier
-        if day2_classifier != "0"
+        if runner.non_compete2
+          runner.day2_score = 0.0
+        elsif ["2", "3", "4", "5"].include? day2_classifier
           if day2_cat > 0
             runner.day2_score = 10 + (60 * (@max_time/day2_cat))
           end
@@ -125,7 +129,7 @@ class TeamResults
   def calculate_awt_by_class_gender(team_class, day)
     times = []
     awt_runners = Runner.where(entryclass: team_class)
-                    .where("classifier#{day} = 0 and float_time#{day} > 0 and non_compete is false")
+                    .where("classifier#{day} = 0 and float_time#{day} > 0 and non_compete#{day} is false")
                       .order("float_time#{day}").limit(3)
     return nil if awt_runners.count == 0
     awt_runners.each { |r| times.push(r.send("float_time#{day}")) }

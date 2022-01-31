@@ -2,14 +2,13 @@ class Runner < ActiveRecord::Base
   has_many :teams, through: :team_members
   has_many :team_members
 
-  scope :competitive, -> { where(non_compete: false).where.not(classifier1: 1) }
+  scope :day1_competitive, -> { where(non_compete1: 0).where(classifier1: ["0", "2","3","4", "5"]) }
+  scope :day2_competitive, -> { where(non_compete2: 0).where(classifier2: ["0", "2","3","4", "5"]) }
 
   def self.import(file)
-    p "Importing runners"
     added = 0
     teams = 0
     skipped = 0
-    p "Clearing existing data"
     self.clear_existing_data
     p "Starting runner import"
     CSV.foreach(file.path, headers: true) do |row|
@@ -18,8 +17,10 @@ class Runner < ActiveRecord::Base
       elsif row["Short"].length > 0
         if row["Region"]
           school = row["Region"]
+          school_short = row["City"]
         else
           school = "N_A"
+          school_short = "N_A"
         end
 
         entryclass = row["Short"]
@@ -27,8 +28,8 @@ class Runner < ActiveRecord::Base
                       surname: row["Surname"].gsub("'"){"\\'"},
                       firstname: row["First name"].gsub("'"){"\\'"},
                       school: school.gsub("'"){"\\'"},
+                      school_short: school_short,
                       entryclass: entryclass,
-                      non_compete: row["nc"].gsub("X"){"1"},
                       gender: row["S"])
         added += 1
         
@@ -61,12 +62,17 @@ class Runner < ActiveRecord::Base
   end
 
   def self.import_results_row(row)
-    if (row["Time"])
-      res = self.get_float_time(row["Time"])
+    if (row["Time1"])
+      res = self.get_float_time(row["Time1"])
       float_time1 = res['float']
       time1 =  res['time']
     else
       float_time1 = 0.0
+    end
+    if (row["nc2"])
+      nc2 = row["nc2"].gsub("X"){"1"}
+    else
+      nc2 = "0"
     end
     if (row["Time2"])
       res = self.get_float_time(row["Time2"])
@@ -85,10 +91,12 @@ class Runner < ActiveRecord::Base
     Runner.where(database_id: row['Stno'].to_s)
       .update_all(time1: time1,
                   float_time1: float_time1,
-                  classifier1: row["Classifier"].to_s,
+                  classifier1: row["Classifier1"].to_s,
+                  non_compete1: row["nc1"].gsub("X"){"1"},
                   time2: time2,
                   float_time2: float_time2,
                   classifier2: row["Classifier2"].to_s,
+                  non_compete2: nc2,
                   total_time: total,
                   float_total_time: float_total)
 

@@ -6,12 +6,14 @@ class CreateRunners < ActiveRecord::Migration
       t.string :firstname
       t.string :gender
       t.string :school
+      t.string :school_short
       t.string :entryclass
       t.string :class_category
-      t.boolean :non_compete
+      t.boolean :non_compete1
       t.time :time1
       t.float :float_time1
       t.string :classifier1
+      t.boolean :non_compete2
       t.time :time2
       t.float :float_time2
       t.string :classifier2

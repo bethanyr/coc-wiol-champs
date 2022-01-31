@@ -1,0 +1,25 @@
+<%iplace = 1 %>
+<% if (runners.size > 0) %>
+  <% runners.each do |result| %>
+    <% if (result.entryclass == run_class[0]) %>
+    <tr>
+     <td>&nbsp<% if result.non_compete1 %><%="nc" %><% else %> <%=iplace.to_s %> <% end %></td>
+                   <td align=left><%=result.firstname%> <%=result.surname%></td>
+                   <td><%=result.school_short%></td>
+                   <td style="text-align: right"><%=time_to_value(result.classifier1, result.time1, result.float_time1) %></td>
+                   <% if run_class[1]["wta_score"] %>
+                    <% if !result.non_compete1 %>
+                      <td style="text-align: right"><% if result.day1_score != nil%><%=result.day1_score.round(2) %><% end %></td>
+                    <% else %>
+                      <td style="text-align: right">&mdash;</td>
+                    <% end %>
+                  <% end %>
+                  <%iplace += 1%>
+                   
+                 </tr>
+             
+             <% end %>
+    <% end %>
+<% else %>
+  <tr><td colspan="2">No entries</td></tr>
+<% end %>

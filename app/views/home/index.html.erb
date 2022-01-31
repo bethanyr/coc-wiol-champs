@@ -1,8 +1,12 @@
 <div class=home>
+
+<h2><%= link_to "Individual Results - 2 Day Total", individual_total_path %> </h2>
+<h2><%= link_to "Individual Results - Day 1", individual_day1_path %> </h2>
+<h2><%= link_to "Individual Results - Day 2", individual_day2_path %> </h2>
+<h2><%= link_to "Team Standings Day 1",team_day1_path %></h2>
+<h2><%= link_to "Team Standings Day 2", team_day2_path %></h2>
+<h2><%= link_to "Team Standings Two Days", team_total_path %></h2>
+
+<h2><%= link_to "Average Winning Time", controller: "awt" %></h2>
 <h2><%= link_to "Import Runners / Teams", controller: "runners" %></h2>
-<h2><%= link_to "Team Results", controller: "teams" %></h2>
-<h2><%= link_to "Team Results 2 (for publishing)", controller: "teams2" %> </h2>
-<h2><%= link_to "Individual Results - Screen 1", controller: "overall" %> </h2>
-<h2><%= link_to "Individual Awards - Top 3 (based on AWT)", controller: "awards" %> </h2>
-<h2><%= link_to "Average Weighted Time", controller: "awt" %></h2>
 </div>

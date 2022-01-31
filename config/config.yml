@@ -52,6 +52,27 @@ development:
       wta_score: false
       team_score: false
       gender:
+    'Br':
+      o_class_description: 'Shorter Advanced'
+      class_level: 'Shorter Advanced'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
+    'M-Red':
+      o_class_description: 'Male Red'
+      class_level: 'Male Red'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
+    'G-Red':
+      o_class_description: 'Group Red'
+      class_level: 'Group Red'
+      team: 
+      wta_score: false
+      team_score: false
+      gender:
     '7F':
       o_class_description: 'Short Adv Female'
       class_level: 'Short Adv'
