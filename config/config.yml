@@ -183,6 +183,34 @@ development:
       team_score: true
       wta_score: true
       gender: 'M'
+    W5FIC:
+      o_class_description: 'JV IC Female'
+      level: 'JV IC'
+      team:
+      wta_score: true
+      team_score: false
+      gender: 'F'
+    W5MIC:
+      o_class_description: 'JV IC Male'
+      level: 'JV IC'
+      team:
+      team_score: false
+      wta_score: true
+      gender: 'M'
+    W8F:
+      o_class_description: 'Varsity IC Female'
+      level: 'Varsity IC'
+      team:
+      wta_score: true
+      team_score: false
+      gender: 'F'
+    W8M:
+      o_class_description: 'Varsity IC Male'
+      level: 'Varsity IC'
+      team:
+      team_score: false
+      wta_score: true
+      gender: 'M'
   team_mapping:
     W2F: 'Middle School'
     W2M: 'Middle School'
@@ -355,5 +383,33 @@ test:
       level: 'Varsity'
       team: 'Varsity Boys'
       team_score: true
+      wta_score: true
+      gender: 'M'
+    W5FIC:
+      o_class_description: 'JV IC Female'
+      level: 'JV IC'
+      team:
+      wta_score: true
+      team_score: false
+      gender: 'F'
+    W5MIC:
+      o_class_description: 'JV IC Male'
+      level: 'JV IC'
+      team:
+      team_score: false
+      wta_score: true
+      gender: 'M'
+    W8F:
+      o_class_description: 'Varsity IC Female'
+      level: 'Varsity IC'
+      team:
+      wta_score: true
+      team_score: false
+      gender: 'F'
+    W8M:
+      o_class_description: 'Varsity IC Male'
+      level: 'Varsity IC'
+      team:
+      team_score: false
       wta_score: true
       gender: 'M'
